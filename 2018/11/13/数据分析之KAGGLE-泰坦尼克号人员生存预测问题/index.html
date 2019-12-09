@@ -1,0 +1,899 @@
+<!--
+	作者：Sariay
+	时间：2018-09-25
+	描述：There may be a bug, but don't worry, QiLing(器灵) says that it can work normally!
+-->
+<!DOCTYPE html>
+<html class="html-loading">
+		
+
+<head>
+	<meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+  <title>
+    
+      数据分析之KAGGLE-泰坦尼克号人员生存预测问题 | HandsYe
+    
+  </title>
+  <meta name="author" content="huiye">
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+	<!-- favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+
+  <!-- css -->
+  <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/Annie.css">
+  
+  <!-- jquery -->
+	<script src="/js/jquery.min.js"></script>
+
+  <!-- leancloud -->
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+<script src="/js/leancloud.js"></script>
+</head>
+	<body>
+		<!-- Preloader -->
+
+	<div id="preloader">
+		<div class="pre-container">
+			
+				<div class="spinner">
+					<div class="double-bounce1"></div>
+					<div class="double-bounce2"></div>
+				</div>
+						
+		</div>
+	</div>
+
+
+<!-- header -->
+<header class="fixbackground" data-img-mode="normal" data-normal-src="/img/1.jpg" data-random-max="110" data-random-src="https://sariay.github.io/Random-img/">
+	<div class="mask">
+		<!-- Logo and navigation -->
+		<div class="h-header">
+			<div id="logo">
+				<a href="/">
+						
+						<img src="/img/logo.png" alt="Logo">
+					
+				</a>
+			</div>
+			
+			<div id="navigation-show">
+				<ul>
+	
+		<li class="menu-home">
+			<a href="/" class="menu-item-home">主页</a>
+		</li>
+	
+		<li class="menu-archive">
+			<a href="/archives" class="menu-item-archive">归档</a>
+		</li>
+	
+		<li class="menu-categories">
+			<a href="/categories" class="menu-item-categories">分类</a>
+		</li>
+	
+		<li class="menu-tags">
+			<a href="/tags" class="menu-item-tags">标签</a>
+		</li>
+	
+		<li class="menu-about">
+			<a href="/about" class="menu-item-about">关于</a>
+		</li>
+	
+		<li class="menu-gallery">
+			<a href="/gallery" class="menu-item-gallery">相册</a>
+		</li>
+	
+
+	
+</ul>
+			</div>				
+		</div>
+
+		<!-- motto -->
+		<div class="h-body">	
+			
+				<p class="motto"></p>
+			
+		</div>
+		
+		<!-- others: such as time... -->			
+		<div class="h-footer">
+			<a href="javascript:;" target="_blank" rel="noopener" id="read-more"><i class="fa fa-angle-double-down" aria-hidden="true"></i>
+			</a>
+
+			
+				<!-- 
+	This is only a demo, please go to "https://time.is" to set your city time! 
+-->
+<style type="text/css">
+	.header-date {
+		font-size: 1.6rem;
+		color: #fff;
+		position: absolute;
+		bottom: 5px;
+		right: 1rem;
+		writing-mode: tb-rl;
+	}	
+	
+	.header-date a {
+		border-bottom: none;
+	}
+
+	@media only screen and (max-width: 768 ) {
+		.header-date {
+			font-size: 1rem;
+		}			
+	}
+</style>
+<div class="header-date">
+	<a href="https://time.is/Beijing" target="_blank" id="time_is_link" rel="nofollow noopener" ></a>
+	<span id="Beijing_z43d"></span>
+</div>
+<script src="//widget.time.is/zh.js"></script>
+<script>
+	time_is_widget.init({
+		Beijing_z43d:{
+			template:"DATE", 
+			date_format:"year年 monthname dnum日"
+		}
+	});
+</script>
+			
+		</div>
+	</div>
+</header>
+
+<div id="navigation-hide">
+	<!-- Progress bar -->
+	<div id="progress-bar"></div>
+
+	<!-- Progress percent -->
+	<div id="progress-percentage"><h1>0.0%</h1></div>
+
+	<div class="toc-switch"><span class="switch-button">目录</span></div>
+
+	<!-- Page title -->
+	<p>
+		
+			当前文章&nbsp;:&nbsp;《数据分析之KAGGLE-泰坦尼克号人员生存预测问题》
+		
+	</p>
+
+	<!-- Nav trigger for navigation-H-->
+	<a class="nav-trigger"><span></span></a>
+</div>
+
+<!-- Navigation in div(id="navigation-H") -->
+<nav class="nav-container" id="cd-nav">
+	<div class="nav-header">
+		<h3>Navigation</h3>
+		<a href="javascript:;" target="_blank" rel="noopener" class="nav-close"></a>
+	</div>
+	<div class="nav-body">
+		<ul>
+	
+		<li class="menu-home">
+			<a href="/" class="menu-item-home">主页</a>
+		</li>
+	
+		<li class="menu-archive">
+			<a href="/archives" class="menu-item-archive">归档</a>
+		</li>
+	
+		<li class="menu-categories">
+			<a href="/categories" class="menu-item-categories">分类</a>
+		</li>
+	
+		<li class="menu-tags">
+			<a href="/tags" class="menu-item-tags">标签</a>
+		</li>
+	
+		<li class="menu-about">
+			<a href="/about" class="menu-item-about">关于</a>
+		</li>
+	
+		<li class="menu-gallery">
+			<a href="/gallery" class="menu-item-gallery">相册</a>
+		</li>
+	
+
+	
+</ul>
+	</div>
+	<div class="nav-footer">
+		<ul>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<i class="fa fa-github"></i>
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<i class="fa fa-weibo"></i>
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<i class="fa fa-pinterest"></i>
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<i class="fa fa-instagram"></i>
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<i class="fa fa-twitter"></i>
+			</a>
+		</li>
+	
+		<li>
+			<a href="/atom.xml" target="_blank">
+				<i class="fa fa-rss"></i>
+			</a>
+		</li>
+			
+</ul>
+
+	</div>
+</nav>
+			
+		<!--main-->
+		<main>
+			<!--
+	时间：2018-11-17
+	描述：
+		插件名称：katelog.min.js
+		插件作者：KELEN
+		插件来源: https://github.com/KELEN/katelog
+-->
+
+	
+		<div class="layout-toc">
+			<div id="layout-toc">
+				<div class="k-catelog-list" id="catelog-list" data-title="文章目录"></div>
+			</div>
+		</div>
+
+		
+		<script src="/plugin/toc/katelog.min.js"></script>
+
+		
+	 
+
+<div class="layout-post">
+	<div id="layout-post">
+	<div class="article-title">
+		<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+		
+	<a href="/2018/11/13/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E4%B9%8BKAGGLE-%E6%B3%B0%E5%9D%A6%E5%B0%BC%E5%85%8B%E5%8F%B7%E4%BA%BA%E5%91%98%E7%94%9F%E5%AD%98%E9%A2%84%E6%B5%8B%E9%97%AE%E9%A2%98/" itemprop="url">
+		数据分析之KAGGLE-泰坦尼克号人员生存预测问题
+	</a>
+
+	</div>
+
+	<div class="article-meta">
+		<span>
+			<i class="fa fa-calendar"></i>
+			
+
+
+	发布于
+
+	<a href="/2018/11/13/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E4%B9%8BKAGGLE-%E6%B3%B0%E5%9D%A6%E5%B0%BC%E5%85%8B%E5%8F%B7%E4%BA%BA%E5%91%98%E7%94%9F%E5%AD%98%E9%A2%84%E6%B5%8B%E9%97%AE%E9%A2%98/" itemprop="url">
+		<time datetime="2018-11-13T03:07:54.000Z" itemprop="datePublished">
+	  		2018-11-13
+	  </time>
+	</a>
+	&nbsp;
+
+
+
+
+
+			
+
+
+
+
+	更新于
+
+	<a href="/2018/11/13/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E4%B9%8BKAGGLE-%E6%B3%B0%E5%9D%A6%E5%B0%BC%E5%85%8B%E5%8F%B7%E4%BA%BA%E5%91%98%E7%94%9F%E5%AD%98%E9%A2%84%E6%B5%8B%E9%97%AE%E9%A2%98/" itemprop="url">
+		<time datetime="2018-11-13T03:07:54.000Z" itemprop="dateUpdated">
+	  		2019-12-09
+	  </time>
+	</a> 
+
+
+
+		</span>
+		<span>
+			<i class="fa fa-tags"></i>
+			
+	
+		<a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" class=" ">
+			机器学习
+		</a>
+	
+		<a href="/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" class=" ">
+			数据分析
+		</a>
+	
+		
+		</span>
+		
+		
+
+
+
+	</div>
+
+	<div class="article-content" id="article-content">
+		<h1 id="分析目的"><a href="#分析目的" class="headerlink" title="分析目的"></a>分析目的</h1><p>完成对什么样的人可能生存的分析。</p>
+<h1 id="分析步骤"><a href="#分析步骤" class="headerlink" title="分析步骤"></a>分析步骤</h1><h2 id="1、数据分析"><a href="#1、数据分析" class="headerlink" title="1、数据分析"></a>1、数据分析</h2><h3 id="数据下载和加载"><a href="#数据下载和加载" class="headerlink" title="数据下载和加载"></a>数据下载和加载</h3><p>数据集下载地址：<a href="https://www.kaggle.com/c/titanic/data" target="_blank" rel="noopener">https://www.kaggle.com/c/titanic/data</a></p>
+<h3 id="数据说明"><a href="#数据说明" class="headerlink" title="数据说明"></a>数据说明</h3><table>
+<thead>
+<tr>
+<th>特征</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>survival</td>
+<td>生存</td>
+</tr>
+<tr>
+<td>pclass</td>
+<td>票类别</td>
+</tr>
+<tr>
+<td>sex</td>
+<td>性别</td>
+</tr>
+<tr>
+<td>Age</td>
+<td>年龄</td>
+</tr>
+<tr>
+<td>sibsp</td>
+<td>兄弟姐妹/配偶</td>
+</tr>
+<tr>
+<td>parch</td>
+<td>父母/孩子的数量</td>
+</tr>
+<tr>
+<td>ticket</td>
+<td>票号</td>
+</tr>
+<tr>
+<td>fare</td>
+<td>乘客票价</td>
+</tr>
+<tr>
+<td>cabin</td>
+<td>客舱号码</td>
+</tr>
+<tr>
+<td>embarked</td>
+<td>登船港口</td>
+</tr>
+</tbody></table>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 导入相关数据包</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">%matplotlib inline</span></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">train = pd.read_csv(<span class="string">"train.csv"</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">test = pd.read_csv(<span class="string">"test.csv"</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#看一下数据特征</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">train.info()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">print(<span class="string">"-"</span>*<span class="number">20</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#默认输出前五行数据</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">train.head()</span></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">pandas</span>.<span class="title">core</span>.<span class="title">frame</span>.<span class="title">DataFrame</span>'&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="title">RangeIndex</span>:</span> <span class="number">891</span> entries, <span class="number">0</span> to <span class="number">890</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">Data columns (total <span class="number">12</span> columns):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">PassengerId    <span class="number">891</span> non-null int64</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">Survived       <span class="number">891</span> non-null int64</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">Pclass         <span class="number">891</span> non-null int64</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">Name           <span class="number">891</span> non-null object</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">Sex            <span class="number">891</span> non-null object</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">Age            <span class="number">714</span> non-null float64</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">SibSp          <span class="number">891</span> non-null int64</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">Parch          <span class="number">891</span> non-null int64</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">Ticket         <span class="number">891</span> non-null object</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">Fare           <span class="number">891</span> non-null float64</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">Cabin          <span class="number">204</span> non-null object</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">Embarked       <span class="number">889</span> non-null object</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">dtypes: float64(<span class="number">2</span>), int64(<span class="number">5</span>), object(<span class="number">5</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">memory usage: <span class="number">83.6</span>+ KB</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">--------------------</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">	PassengerId	Survived	Pclass	Name	Sex	Age	SibSp	Parch	Ticket	Fare	Cabin	Embarked</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line"><span class="number">0</span>	<span class="number">1</span>	<span class="number">0</span>	<span class="number">3</span>	Braund, Mr. Owen Harris	male	<span class="number">22.0</span>	<span class="number">1</span>	<span class="number">0</span>	A/<span class="number">5</span> <span class="number">21171</span>	<span class="number">7.2500</span>	NaN	S</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>	<span class="number">2</span>	<span class="number">1</span>	<span class="number">1</span>	Cumings, Mrs. John Bradley (Florence Briggs Th...	female	<span class="number">38.0</span>	<span class="number">1</span>	<span class="number">0</span>	PC <span class="number">17599</span>	<span class="number">71.2833</span>	C85	C</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line"><span class="number">2</span>	<span class="number">3</span>	<span class="number">1</span>	<span class="number">3</span>	Heikkinen, Miss. Laina	female	<span class="number">26.0</span>	<span class="number">0</span>	<span class="number">0</span>	STON/O2. <span class="number">3101282</span>	<span class="number">7.9250</span>	NaN	S</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line"><span class="number">3</span>	<span class="number">4</span>	<span class="number">1</span>	<span class="number">1</span>	Futrelle, Mrs. Jacques Heath (Lily May Peel)	female	<span class="number">35.0</span>	<span class="number">1</span>	<span class="number">0</span>	<span class="number">113803</span>	<span class="number">53.1000</span>	C123	S</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line"><span class="number">4</span>	<span class="number">5</span>	<span class="number">0</span>	<span class="number">3</span>	Allen, Mr. William Henry	male	<span class="number">35.0</span>	<span class="number">0</span>	<span class="number">0</span>	<span class="number">373450</span>	<span class="number">8.0500</span>	NaN	S</span></pre></td></tr></table></figure>
+<h3 id="特征分析"><a href="#特征分析" class="headerlink" title="特征分析"></a>特征分析</h3><ol>
+<li>数值型变量之间的相关性</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 相关性协方差表,corr()函数</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">train_corr = train.drop(<span class="string">'PassengerId'</span>,axis=<span class="number">1</span>).corr()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">train_corr</span></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">	Survived	Pclass	Age	SibSp	Parch	Fare</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">Survived	<span class="number">1.000000</span>	<span class="number">-0.338481</span>	<span class="number">-0.077221</span>	<span class="number">-0.035322</span>	<span class="number">0.081629</span>	<span class="number">0.257307</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">Pclass	<span class="number">-0.338481</span>	<span class="number">1.000000</span>	<span class="number">-0.369226</span>	<span class="number">0.083081</span>	<span class="number">0.018443</span>	<span class="number">-0.549500</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">Age	<span class="number">-0.077221</span>	<span class="number">-0.369226</span>	<span class="number">1.000000</span>	<span class="number">-0.308247</span>	<span class="number">-0.189119</span>	<span class="number">0.096067</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">SibSp	<span class="number">-0.035322</span>	<span class="number">0.083081</span>	<span class="number">-0.308247</span>	<span class="number">1.000000</span>	<span class="number">0.414838</span>	<span class="number">0.159651</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">Parch	<span class="number">0.081629</span>	<span class="number">0.018443</span>	<span class="number">-0.189119</span>	<span class="number">0.414838</span>	<span class="number">1.000000</span>	<span class="number">0.216225</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">Fare	<span class="number">0.257307</span>	<span class="number">-0.549500</span>	<span class="number">0.096067</span>	<span class="number">0.159651</span>	<span class="number">0.216225</span>	<span class="number">1.000000</span></span></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 画相关性热图</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">fig = plt.subplots(figsize=(<span class="number">10</span>,<span class="number">8</span>))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">fig = sns.heatmap(train_corr, vmin=<span class="number">-1</span>, vmax=<span class="number">1</span> , annot=<span class="literal">True</span>)</span></pre></td></tr></table></figure>
+<ol start="2">
+<li>分析每个变量与结果之间的关系</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#Pclass 乘客等级</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">train_p = train.groupby([<span class="string">'Pclass'</span>])[<span class="string">'Pclass'</span>,<span class="string">'Survived'</span>].mean()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">train_p</span></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#看出等级为1时相关性最大</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">	Pclass	Survived</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">Pclass		</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>	<span class="number">1.0</span>	<span class="number">0.629630</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="number">2</span>	<span class="number">2.0</span>	<span class="number">0.472826</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="number">3</span>	<span class="number">3.0</span>	<span class="number">0.242363</span></span></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#条形图</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">train[[<span class="string">'Pclass'</span>,<span class="string">'Survived'</span>]].groupby([<span class="string">'Pclass'</span>]).mean().plot.bar()</span></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/2018111216530019.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hhbmRzeWU=,size_16,color_FFFFFF,t_70" alt="等级越高存活率越大"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#性别</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">train_s = train.groupby([<span class="string">'Sex'</span>])[<span class="string">'Sex'</span>,<span class="string">'Survived'</span>].mean()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">train_s</span></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#女性有更高的存活率</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">	Survived</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">Sex	</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">female	<span class="number">0.742038</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">male	<span class="number">0.188908</span></span></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#条形图</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">train[[<span class="string">'Sex'</span>,<span class="string">'Survived'</span>]].groupby([<span class="string">'Sex'</span>]).mean().plot.bar()</span></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20181112170103740.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hhbmRzeWU=,size_16,color_FFFFFF,t_70" alt="女性存活率大"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#兄弟姊妹数</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">train[[<span class="string">'SibSp'</span>,<span class="string">'Survived'</span>]].groupby([<span class="string">'SibSp'</span>]).mean()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#父母子女数</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">train[[<span class="string">'Parch'</span>,<span class="string">'Survived'</span>]].groupby([<span class="string">'Parch'</span>]).mean()</span></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#可以看出与能否生存相关性不大，后续可以构造新变量</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">	Survived</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">SibSp	</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="number">0</span>	<span class="number">0.345395</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>	<span class="number">0.535885</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="number">2</span>	<span class="number">0.464286</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="number">3</span>	<span class="number">0.250000</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="number">4</span>	<span class="number">0.166667</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="number">5</span>	<span class="number">0.000000</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"><span class="number">8</span>	<span class="number">0.000000</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">	Survived</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">Parch	</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"><span class="number">0</span>	<span class="number">0.343658</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>	<span class="number">0.550847</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line"><span class="number">2</span>	<span class="number">0.500000</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line"><span class="number">3</span>	<span class="number">0.600000</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line"><span class="number">4</span>	<span class="number">0.000000</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line"><span class="number">5</span>	<span class="number">0.200000</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line"><span class="number">6</span>	<span class="number">0.000000</span></span></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#年龄与生存情况的分析</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#年龄是有大部分缺失值的,缺失值需要进行处理,可以使用填充或者模型预测</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">train_g = sns.FacetGrid(train, col=<span class="string">'Survived'</span>,height=<span class="number">5</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">train_g.map(plt.hist, <span class="string">'Age'</span>, bins=<span class="number">40</span>)</span></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">train.groupby([<span class="string">'Age'</span>])[<span class="string">'Survived'</span>].mean().plot()</span></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20181112220058219.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hhbmRzeWU=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#登港港口与生存情况的分析</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#可以看出C地的生存率更高</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">train_e = train[[<span class="string">'Embarked'</span>,<span class="string">'Survived'</span>]].groupby([<span class="string">'Embarked'</span>]).mean().plot.bar()</span></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/2018111222112011.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hhbmRzeWU=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="2、特征工程"><a href="#2、特征工程" class="headerlink" title="2、特征工程"></a>2、特征工程</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#先将数据集合并,一起做特征工程(注意,标准化的时候需要分开处理)</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#先将test补齐,然后通过pd.apped()合并</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">test[<span class="string">'Survived'</span>] = <span class="number">0</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#test.head()</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">train_test = train.append(test,sort=<span class="literal">False</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#train_test.head()</span></span></pre></td></tr></table></figure>
+
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#test添加一列数据，生存都为0</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">	PassengerId	Pclass	Name	Sex	Age	SibSp	Parch	Ticket	Fare	Cabin	Embarked	Survived</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="number">0</span>	<span class="number">892</span>	<span class="number">3</span>	Kelly, Mr. James	male	<span class="number">34.5</span>	<span class="number">0</span>	<span class="number">0</span>	<span class="number">330911</span>	<span class="number">7.8292</span>	NaN	Q	<span class="number">0</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>	<span class="number">893</span>	<span class="number">3</span>	Wilkes, Mrs. James (Ellen Needs)	female	<span class="number">47.0</span>	<span class="number">1</span>	<span class="number">0</span>	<span class="number">363272</span>	<span class="number">7.0000</span>	NaN	S	<span class="number">0</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="number">2</span>	<span class="number">894</span>	<span class="number">2</span>	Myles, Mr. Thomas Francis	male	<span class="number">62.0</span>	<span class="number">0</span>	<span class="number">0</span>	<span class="number">240276</span>	<span class="number">9.6875</span>	NaN	Q	<span class="number">0</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="number">3</span>	<span class="number">895</span>	<span class="number">3</span>	Wirz, Mr. Albert	male	<span class="number">27.0</span>	<span class="number">0</span>	<span class="number">0</span>	<span class="number">315154</span>	<span class="number">8.6625</span>	NaN	S	<span class="number">0</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="number">4</span>	<span class="number">896</span>	<span class="number">3</span>	Hirvonen, Mrs. Alexander (Helga E Lindqvist)	female	<span class="number">22.0</span>	<span class="number">1</span>	<span class="number">1</span>	<span class="number">3101298</span>	<span class="number">12.2875</span>	NaN	S	<span class="number">0</span></span></pre></td></tr></table></figure>
+
+<h3 id="特征处理"><a href="#特征处理" class="headerlink" title="特征处理"></a>特征处理</h3><ol>
+<li>Pclass,乘客等级,1是最高级</li>
+</ol>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">fea1 = pd.get_dummies(train_test,columns=[<span class="string">'Pclass'</span>])</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">fea1.head()</span></pre></td></tr></table></figure>
+
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">Age	Cabin	Embarked	Fare	Name	Parch	PassengerId	Sex	SibSp	Survived	Ticket	Pclass_1	Pclass_2	Pclass_3</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="number">0</span>	<span class="number">22.0</span>	NaN	S	<span class="number">7.2500</span>	Braund, Mr. Owen Harris	<span class="number">0</span>	<span class="number">1</span>	male	<span class="number">1</span>	<span class="number">0</span>	A/<span class="number">5</span> <span class="number">21171</span>	<span class="number">0</span>	<span class="number">0</span>	<span class="number">1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>	<span class="number">38.0</span>	C85	C	<span class="number">71.2833</span>	Cumings, Mrs. John Bradley (Florence Briggs Th...	<span class="number">0</span>	<span class="number">2</span>	female	<span class="number">1</span>	<span class="number">1</span>	PC <span class="number">17599</span>	<span class="number">1</span>	<span class="number">0</span>	<span class="number">0</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="number">2</span>	<span class="number">26.0</span>	NaN	S	<span class="number">7.9250</span>	Heikkinen, Miss. Laina	<span class="number">0</span>	<span class="number">3</span>	female	<span class="number">0</span>	<span class="number">1</span>	STON/O2. <span class="number">3101282</span>	<span class="number">0</span>	<span class="number">0</span>	<span class="number">1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="number">3</span>	<span class="number">35.0</span>	C123	S	<span class="number">53.1000</span>	Futrelle, Mrs. Jacques Heath (Lily May Peel)	<span class="number">0</span>	<span class="number">4</span>	female	<span class="number">1</span>	<span class="number">1</span>	<span class="number">113803</span>	<span class="number">1</span>	<span class="number">0</span>	<span class="number">0</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="number">4</span>	<span class="number">35.0</span>	NaN	S	<span class="number">8.0500</span>	Allen, Mr. William Henry	<span class="number">0</span>	<span class="number">5</span>	male	<span class="number">0</span>	<span class="number">0</span>	<span class="number">373450</span>	<span class="number">0</span>	<span class="number">0</span>	<span class="number">1</span></span></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>Sex,性别没有缺失值,直接分列</li>
+</ol>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">fea2 = pd.get_dummies(fea1,columns=[<span class="string">"Sex"</span>])</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">fea2.head()</span></pre></td></tr></table></figure>
+
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">Age	Cabin	Embarked	Fare	Name	Parch	PassengerId	SibSp	Survived	Ticket	Pclass_1	Pclass_2	Pclass_3	Sex_female	Sex_male</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="number">0</span>	<span class="number">22.0</span>	NaN	S	<span class="number">7.2500</span>	Braund, Mr. Owen Harris	<span class="number">0</span>	<span class="number">1</span>	<span class="number">1</span>	<span class="number">0</span>	A/<span class="number">5</span> <span class="number">21171</span>	<span class="number">0</span>	<span class="number">0</span>	<span class="number">1</span>	<span class="number">0</span>	<span class="number">1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>	<span class="number">38.0</span>	C85	C	<span class="number">71.2833</span>	Cumings, Mrs. John Bradley (Florence Briggs Th...	<span class="number">0</span>	<span class="number">2</span>	<span class="number">1</span>	<span class="number">1</span>	PC <span class="number">17599</span>	<span class="number">1</span>	<span class="number">0</span>	<span class="number">0</span>	<span class="number">1</span>	<span class="number">0</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="number">2</span>	<span class="number">26.0</span>	NaN	S	<span class="number">7.9250</span>	Heikkinen, Miss. Laina	<span class="number">0</span>	<span class="number">3</span>	<span class="number">0</span>	<span class="number">1</span>	STON/O2. <span class="number">3101282</span>	<span class="number">0</span>	<span class="number">0</span>	<span class="number">1</span>	<span class="number">1</span>	<span class="number">0</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="number">3</span>	<span class="number">35.0</span>	C123	S	<span class="number">53.1000</span>	Futrelle, Mrs. Jacques Heath (Lily May Peel)	<span class="number">0</span>	<span class="number">4</span>	<span class="number">1</span>	<span class="number">1</span>	<span class="number">113803</span>	<span class="number">1</span>	<span class="number">0</span>	<span class="number">0</span>	<span class="number">1</span>	<span class="number">0</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="number">4</span>	<span class="number">35.0</span>	NaN	S	<span class="number">8.0500</span>	Allen, Mr. William Henry	<span class="number">0</span>	<span class="number">5</span>	<span class="number">0</span>	<span class="number">0</span>	<span class="number">373450</span>	<span class="number">0</span>	<span class="number">0</span>	<span class="number">1</span>	<span class="number">0</span>	<span class="number">1</span></span></pre></td></tr></table></figure>
+<ol start="3">
+<li>SibSp and Parch 兄妹配偶数/父母子女数</li>
+</ol>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">train_test[<span class="string">'SibSp_Parch'</span>] = train_test[<span class="string">'SibSp'</span>] + train_test[<span class="string">'Parch'</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">train_test = pd.get_dummies(train_test,columns = [<span class="string">'SibSp'</span>,<span class="string">'Parch'</span>,<span class="string">'SibSp_Parch'</span>])</span></pre></td></tr></table></figure>
+<ol start="4">
+<li>Embarked 数据有极少量(3个)缺失值,但是在分列的时候,缺失值的所有列可以均为0,所以可以考虑不填充.<br>另外,也可以考虑用测试集众数来填充.先找出众数,再采用df.fillna()方法</li>
+</ol>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">train_test = pd.get_dummies(train_test,columns=[<span class="string">"Embarked"</span>])</span></pre></td></tr></table></figure>
+<ol start="5">
+<li>name</li>
+<li>在数据的Name项中包含了对该乘客的称呼,将这些关键词提取出来,然后做分列处理.<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#从名字中提取出称呼： df['Name].str.extract()是提取函数,配合正则一起使用</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">train_test[<span class="string">'Name1'</span>] = train_test[<span class="string">'Name'</span>].str.extract(<span class="string">'.+,(.+)'</span>, expand=<span class="literal">False</span>).str.extract(<span class="string">'^(.+?)\.'</span>, expand=<span class="literal">False</span>).str.strip()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#将姓名分类处理()</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">train_test[<span class="string">'Name1'</span>].replace([<span class="string">'Capt'</span>, <span class="string">'Col'</span>, <span class="string">'Major'</span>, <span class="string">'Dr'</span>, <span class="string">'Rev'</span>], <span class="string">'Officer'</span> , inplace = <span class="literal">True</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">train_test[<span class="string">'Name1'</span>].replace([<span class="string">'Jonkheer'</span>, <span class="string">'Don'</span>, <span class="string">'Sir'</span>, <span class="string">'the Countess'</span>, <span class="string">'Dona'</span>, <span class="string">'Lady'</span>], <span class="string">'Royalty'</span> , inplace = <span class="literal">True</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">train_test[<span class="string">'Name1'</span>].replace([<span class="string">'Mme'</span>, <span class="string">'Ms'</span>, <span class="string">'Mrs'</span>], <span class="string">'Mrs'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">train_test[<span class="string">'Name1'</span>].replace([<span class="string">'Mlle'</span>, <span class="string">'Miss'</span>], <span class="string">'Miss'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">train_test[<span class="string">'Name1'</span>].replace([<span class="string">'Mr'</span>], <span class="string">'Mr'</span> , inplace = <span class="literal">True</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">train_test[<span class="string">'Name1'</span>].replace([<span class="string">'Master'</span>], <span class="string">'Master'</span> , inplace = <span class="literal">True</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#分列处理</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">train_test = pd.get_dummies(train_test,columns=[<span class="string">'Name1'</span>])</span></pre></td></tr></table></figure></li>
+<li>从姓名中提取出姓做特征</li>
+</ol>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#从姓名中提取出姓</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">train_test[<span class="string">'Name2'</span>] = train_test[<span class="string">'Name'</span>].apply(<span class="keyword">lambda</span> x: x.split(<span class="string">'.'</span>)[<span class="number">1</span>])</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#计算数量,然后合并数据集</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">Name2_sum = train_test[<span class="string">'Name2'</span>].value_counts().reset_index()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">Name2_sum.columns=[<span class="string">'Name2'</span>,<span class="string">'Name2_sum'</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">train_test = pd.merge(train_test,Name2_sum,how=<span class="string">'left'</span>,on=<span class="string">'Name2'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#由于出现一次时该特征时无效特征,用one来代替出现一次的姓</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">train_test.loc[train_test[<span class="string">'Name2_sum'</span>] == <span class="number">1</span> , <span class="string">'Name2_new'</span>] = <span class="string">'one'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">train_test.loc[train_test[<span class="string">'Name2_sum'</span>] &gt; <span class="number">1</span> , <span class="string">'Name2_new'</span>] = train_test[<span class="string">'Name2'</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">del</span> train_test[<span class="string">'Name2'</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#分列处理</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">train_test = pd.get_dummies(train_test,columns=[<span class="string">'Name2_new'</span>])</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#删掉姓名这个特征</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">del</span> train_test[<span class="string">'Name'</span>]</span></pre></td></tr></table></figure>
+<ol start="6">
+<li>fare 该特征有缺失值,先找出缺失值的那调数据,然后用平均数填充</li>
+</ol>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#从上面的分析,发现该特征train集无miss值,test有一个缺失值,先查看</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">train_test.loc[train_test[<span class="string">"Fare"</span>].isnull()]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#票价与pclass和Embarked有关,所以用train分组后的平均数填充</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">train.groupby(by=[<span class="string">"Pclass"</span>,<span class="string">"Embarked"</span>]).Fare.mean()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">Pclass  Embarked</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>       C           <span class="number">104.718529</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">        Q            <span class="number">90.000000</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">        S            <span class="number">70.364862</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="number">2</span>       C            <span class="number">25.358335</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">        Q            <span class="number">12.350000</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">        S            <span class="number">20.327439</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"><span class="number">3</span>       C            <span class="number">11.214083</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">        Q            <span class="number">11.183393</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">        S            <span class="number">14.644083</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">Name: Fare, dtype: float64</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#用pclass=3和Embarked=S的平均数14.644083来填充</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">train_test[<span class="string">"Fare"</span>].fillna(<span class="number">14.435422</span>,inplace=<span class="literal">True</span>)</span></pre></td></tr></table></figure>
+<ol start="7">
+<li>Ticket该列和名字做类似的处理,先提取,然后分列</li>
+</ol>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#将Ticket提取字符列</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#str.isnumeric()  如果S中只有数字字符，则返回True，否则返回False</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">train_test[<span class="string">'Ticket_Letter'</span>] = train_test[<span class="string">'Ticket'</span>].str.split().str[<span class="number">0</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">train_test[<span class="string">'Ticket_Letter'</span>] = train_test[<span class="string">'Ticket_Letter'</span>].apply(<span class="keyword">lambda</span> x:np.nan <span class="keyword">if</span> x.isnumeric() <span class="keyword">else</span> x)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">train_test.drop(<span class="string">'Ticket'</span>,inplace=<span class="literal">True</span>,axis=<span class="number">1</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#分列,此时nan值可以不做处理</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">train_test = pd.get_dummies(train_test,columns=[<span class="string">'Ticket_Letter'</span>],drop_first=<span class="literal">True</span>)</span></pre></td></tr></table></figure>
+<ol start="8">
+<li>Age</li>
+<li>该列有大量缺失值,考虑用一个回归模型进行填充.</li>
+<li>在模型修改的时候,考虑到年龄缺失值可能影响死亡情况,用年龄是否缺失值来构造新特征</li>
+</ol>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="string">"""这是模型就好后回来增加的新特征</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="string">考虑年龄缺失值可能影响死亡情况,数据表明,年龄缺失的死亡率为0.19."""</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">train_test.loc[train_test[<span class="string">"Age"</span>].isnull()][<span class="string">'Survived'</span>].mean()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="number">0.19771863117870722</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 所以用年龄是否缺失值来构造新特征</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">train_test.loc[train_test[<span class="string">"Age"</span>].isnull() ,<span class="string">"age_nan"</span>] = <span class="number">1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">train_test.loc[train_test[<span class="string">"Age"</span>].notnull() ,<span class="string">"age_nan"</span>] = <span class="number">0</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">train_test = pd.get_dummies(train_test,columns=[<span class="string">'age_nan'</span>])</span></pre></td></tr></table></figure>
+<p>利用其他组特征量，采用机器学习算法来预测Age</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">train_test.info()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">pandas</span>.<span class="title">core</span>.<span class="title">frame</span>.<span class="title">DataFrame</span>'&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="title">Int64Index</span>:</span> <span class="number">1309</span> entries, <span class="number">0</span> to <span class="number">1308</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">Columns: <span class="number">187</span> entries, Age to age_nan_1<span class="number">.0</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">dtypes: float64(<span class="number">2</span>), int64(<span class="number">3</span>), object(<span class="number">1</span>), uint8(<span class="number">181</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">memory usage: <span class="number">343.0</span>+ KB</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#创建没有['Age','Survived']的数据集</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">missing_age = train_test.drop([<span class="string">'Survived'</span>,<span class="string">'Cabin'</span>],axis=<span class="number">1</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#将Age完整的项作为训练集、将Age缺失的项作为测试集。</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">missing_age_train = missing_age[missing_age[<span class="string">'Age'</span>].notnull()]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">missing_age_test = missing_age[missing_age[<span class="string">'Age'</span>].isnull()]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#构建训练集合预测集的X和Y值</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">missing_age_X_train = missing_age_train.drop([<span class="string">'Age'</span>], axis=<span class="number">1</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">missing_age_Y_train = missing_age_train[<span class="string">'Age'</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">missing_age_X_test = missing_age_test.drop([<span class="string">'Age'</span>], axis=<span class="number">1</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 先将数据标准化</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> StandardScaler</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">ss = StandardScaler()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#用测试集训练并标准化</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">ss.fit(missing_age_X_train)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">missing_age_X_train = ss.transform(missing_age_X_train)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">missing_age_X_test = ss.transform(missing_age_X_test)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#使用贝叶斯预测年龄</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> linear_model</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">lin = linear_model.BayesianRidge()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">lin.fit(missing_age_X_train,missing_age_Y_train)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">BayesianRidge(alpha_1=<span class="number">1e-06</span>, alpha_2=<span class="number">1e-06</span>, compute_score=<span class="literal">False</span>, copy_X=<span class="literal">True</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">        fit_intercept=<span class="literal">True</span>, lambda_1=<span class="number">1e-06</span>, lambda_2=<span class="number">1e-06</span>, n_iter=<span class="number">300</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">        normalize=<span class="literal">False</span>, tol=<span class="number">0.001</span>, verbose=<span class="literal">False</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#利用loc将预测值填入数据集</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line">train_test.loc[(train_test[<span class="string">'Age'</span>].isnull()), <span class="string">'Age'</span>] = lin.predict(missing_age_X_test)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#将年龄划分是个阶段10以下,10-18,18-30,30-50,50以上</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line">train_test[<span class="string">'Age'</span>] = pd.cut(train_test[<span class="string">'Age'</span>], bins=[<span class="number">0</span>,<span class="number">10</span>,<span class="number">18</span>,<span class="number">30</span>,<span class="number">50</span>,<span class="number">100</span>],labels=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>])</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">37</span></pre></td><td class="code"><pre><span class="line">train_test = pd.get_dummies(train_test,columns=[<span class="string">'Age'</span>])</span></pre></td></tr></table></figure>
+<ol start="9">
+<li>Cabin<br>cabin项缺失太多，只能将有无Cain首字母进行分类,缺失值为一类,作为特征值进行建模,也可以考虑直接舍去该特征 cabin项缺失太多，只能将有无Cain首字母进行分类,缺失值为一类,作为特征值进行建模,也可以考虑直接舍去该特征</li>
+</ol>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#cabin项缺失太多，只能将有无Cain首字母进行分类,缺失值为一类,作为特征值进行建模</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">train_test[<span class="string">'Cabin_nan'</span>] = train_test[<span class="string">'Cabin'</span>].apply(<span class="keyword">lambda</span> x:str(x)[<span class="number">0</span>] <span class="keyword">if</span> pd.notnull(x) <span class="keyword">else</span> x)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">train_test = pd.get_dummies(train_test,columns=[<span class="string">'Cabin_nan'</span>])</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#cabin项缺失太多，只能将有无Cain首字母进行分类,</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">train_test.loc[train_test[<span class="string">"Cabin"</span>].isnull() ,<span class="string">"Cabin_nan"</span>] = <span class="number">1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">train_test.loc[train_test[<span class="string">"Cabin"</span>].notnull() ,<span class="string">"Cabin_nan"</span>] = <span class="number">0</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">train_test = pd.get_dummies(train_test,columns=[<span class="string">'Cabin_nan'</span>])</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">train_test.drop(<span class="string">'Cabin'</span>,axis=<span class="number">1</span>,inplace=<span class="literal">True</span>)</span></pre></td></tr></table></figure>
+<ol start="10">
+<li>特征工程处理完了,划分数据集</li>
+</ol>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">train_data = train_test[:<span class="number">891</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">test_data = train_test[<span class="number">891</span>:]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">train_data_X = train_data.drop([<span class="string">'Survived'</span>],axis=<span class="number">1</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">train_data_Y = train_data[<span class="string">'Survived'</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">test_data_X = test_data.drop([<span class="string">'Survived'</span>],axis=<span class="number">1</span>)</span></pre></td></tr></table></figure>
+<h3 id="数据规约"><a href="#数据规约" class="headerlink" title="数据规约"></a>数据规约</h3><ol>
+<li>线性模型需要用标准化的数据建模,而树类模型不需要标准化的数据</li>
+<li>处理标准化的时候,注意将测试集的数据transform到test集上</li>
+</ol>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> StandardScaler</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">ss2 = StandardScaler()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">ss2.fit(train_data_X)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">train_data_X_sd = ss2.transform(train_data_X)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">test_data_X_sd = ss2.transform(test_data_X)</span></pre></td></tr></table></figure>
+<h2 id="3、建立模型"><a href="#3、建立模型" class="headerlink" title="3、建立模型"></a>3、建立模型</h2><h3 id="模型发现"><a href="#模型发现" class="headerlink" title="模型发现"></a>模型发现</h3><ol>
+<li>可选单个模型模型有随机森林,逻辑回归,svm,xgboost,gbdt等.</li>
+<li>也可以将多个模型组合起来,进行模型融合,比如voting,stacking等方法<ol start="3">
+<li>好的特征决定模型上限,好的模型和参数可以无线逼近上限.</li>
+<li>我测试了多种模型,模型结果最高的随机森林,最高有0.8.<h3 id="构建模型"><a href="#构建模型" class="headerlink" title="构建模型"></a>构建模型</h3></li>
+</ol>
+<strong>随机森林</strong></li>
+</ol>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> RandomForestClassifier</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">rf = RandomForestClassifier(n_estimators=<span class="number">150</span>,min_samples_leaf=<span class="number">3</span>,max_depth=<span class="number">6</span>,oob_score=<span class="literal">True</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">rf.fit(train_data_X,train_data_Y)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">test[<span class="string">"Survived"</span>] = rf.predict(test_data_X)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">RF = test[[<span class="string">'PassengerId'</span>,<span class="string">'Survived'</span>]].set_index(<span class="string">'PassengerId'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">RF.to_csv(<span class="string">'RF.csv'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 随机森林是随机选取特征进行建模的,所以每次的结果可能都有点小差异</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 如果分数足够好,可以将该模型保存起来,下次直接调出来使用0.81339 'rf10.pkl'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.externals <span class="keyword">import</span> joblib</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">joblib.dump(rf, <span class="string">'rf10.pkl'</span>)</span></pre></td></tr></table></figure>
+<p><strong>LogisticRegression</strong></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LogisticRegression</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.grid_search <span class="keyword">import</span> GridSearchCV</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">lr = LogisticRegression()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">param = &#123;<span class="string">'C'</span>:[<span class="number">0.001</span>,<span class="number">0.01</span>,<span class="number">0.1</span>,<span class="number">1</span>,<span class="number">10</span>], <span class="string">"max_iter"</span>:[<span class="number">100</span>,<span class="number">250</span>]&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">clf = GridSearchCV(lr, param,cv=<span class="number">5</span>, n_jobs=<span class="number">-1</span>, verbose=<span class="number">1</span>, scoring=<span class="string">"roc_auc"</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">clf.fit(train_data_X_sd, train_data_Y)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 打印参数的得分情况</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">clf.grid_scores_</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 打印最佳参数</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">clf.best_params_</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将最佳参数传入训练模型</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">lr = LogisticRegression(clf.best_params_)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">lr.fit(train_data_X_sd, train_data_Y)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 输出结果</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">test[<span class="string">"Survived"</span>] = lr.predict(test_data_X_sd)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">test[[<span class="string">'PassengerId'</span>, <span class="string">'Survived'</span>]].set_index(<span class="string">'PassengerId'</span>).to_csv(<span class="string">'LS5.csv'</span>)</span></pre></td></tr></table></figure>
+<p><strong>SVM</strong></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> svm</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">svc = svm.SVC()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">clf = GridSearchCV(svc,param,cv=<span class="number">5</span>,n_jobs=<span class="number">-1</span>,verbose=<span class="number">1</span>,scoring=<span class="string">"roc_auc"</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">clf.fit(train_data_X_sd,train_data_Y)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">clf.best_params_</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">svc = svm.SVC(C=<span class="number">1</span>,max_iter=<span class="number">250</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 训练模型并预测结果</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">svc.fit(train_data_X_sd,train_data_Y)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">svc.predict(test_data_X_sd)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 打印结果</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">test[<span class="string">"Survived"</span>] = svc.predict(test_data_X_sd)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">SVM = test[[<span class="string">'PassengerId'</span>,<span class="string">'Survived'</span>]].set_index(<span class="string">'PassengerId'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">SVM.to_csv(<span class="string">'svm1.csv'</span>)</span></pre></td></tr></table></figure>
+<p><strong>GBDT</strong></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> GradientBoostingClassifier</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">gbdt = GradientBoostingClassifier(learning_rate=<span class="number">0.7</span>,max_depth=<span class="number">6</span>,n_estimators=<span class="number">100</span>,min_samples_leaf=<span class="number">2</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">gbdt.fit(train_data_X,train_data_Y)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">test[<span class="string">"Survived"</span>] = gbdt.predict(test_data_X)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">test[[<span class="string">'PassengerId'</span>,<span class="string">'Survived'</span>]].set_index(<span class="string">'PassengerId'</span>).to_csv(<span class="string">'gbdt3.csv'</span>)</span></pre></td></tr></table></figure>
+<p><strong>xgboost</strong></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> xgboost <span class="keyword">as</span> xgb</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">xgb_model = xgb.XGBClassifier(n_estimators=<span class="number">150</span>,min_samples_leaf=<span class="number">3</span>,max_depth=<span class="number">6</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">xgb_model.fit(train_data_X,train_data_Y)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">test[<span class="string">"Survived"</span>] = xgb_model.predict(test_data_X)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">XGB = test[[<span class="string">'PassengerId'</span>,<span class="string">'Survived'</span>]].set_index(<span class="string">'PassengerId'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">XGB.to_csv(<span class="string">'XGB5.csv'</span>)</span></pre></td></tr></table></figure>
+<h2 id="4、建立模型"><a href="#4、建立模型" class="headerlink" title="4、建立模型"></a>4、建立模型</h2><p><strong>模型融合 voting</strong></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> VotingClassifier</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LogisticRegression</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">lr = LogisticRegression(C=<span class="number">0.1</span>,max_iter=<span class="number">100</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> xgboost <span class="keyword">as</span> xgb</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">xgb_model = xgb.XGBClassifier(max_depth=<span class="number">6</span>,min_samples_leaf=<span class="number">2</span>,n_estimators=<span class="number">100</span>,num_round = <span class="number">5</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> RandomForestClassifier</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">rf = RandomForestClassifier(n_estimators=<span class="number">200</span>,min_samples_leaf=<span class="number">2</span>,max_depth=<span class="number">6</span>,oob_score=<span class="literal">True</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> GradientBoostingClassifier</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">gbdt = GradientBoostingClassifier(learning_rate=<span class="number">0.1</span>,min_samples_leaf=<span class="number">2</span>,max_depth=<span class="number">6</span>,n_estimators=<span class="number">100</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">vot = VotingClassifier(estimators=[(<span class="string">'lr'</span>, lr), (<span class="string">'rf'</span>, rf),(<span class="string">'gbdt'</span>,gbdt),(<span class="string">'xgb'</span>,xgb_model)], voting=<span class="string">'hard'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">vot.fit(train_data_X_sd,train_data_Y)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">test[<span class="string">"Survived"</span>] = vot.predict(test_data_X_sd)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">test[[<span class="string">'PassengerId'</span>,<span class="string">'Survived'</span>]].set_index(<span class="string">'PassengerId'</span>).to_csv(<span class="string">'vot5.csv'</span>)</span></pre></td></tr></table></figure>
+<p><strong>模型融合 stacking</strong></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 划分train数据集,调用代码,把数据集名字转成和代码一样</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">X = train_data_X_sd</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">X_predict = test_data_X_sd</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">y = train_data_Y</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="string">'''模型融合中使用到的各个单模型'''</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LogisticRegression</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> svm</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> xgboost <span class="keyword">as</span> xgb</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> RandomForestClassifier</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> GradientBoostingClassifier</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">clfs = [LogisticRegression(C=<span class="number">0.1</span>,max_iter=<span class="number">100</span>),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">        xgb.XGBClassifier(max_depth=<span class="number">6</span>,n_estimators=<span class="number">100</span>,num_round = <span class="number">5</span>),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">        RandomForestClassifier(n_estimators=<span class="number">100</span>,max_depth=<span class="number">6</span>,oob_score=<span class="literal">True</span>),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">        GradientBoostingClassifier(learning_rate=<span class="number">0.3</span>,max_depth=<span class="number">6</span>,n_estimators=<span class="number">100</span>)]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建n_folds</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.cross_validation <span class="keyword">import</span> StratifiedKFold</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">n_folds = <span class="number">5</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">skf = list(StratifiedKFold(y, n_folds))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建零矩阵</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">dataset_blend_train = np.zeros((X.shape[<span class="number">0</span>], len(clfs)))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">dataset_blend_test = np.zeros((X_predict.shape[<span class="number">0</span>], len(clfs)))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 建立模型</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> j, clf <span class="keyword">in</span> enumerate(clfs):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">    <span class="string">'''依次训练各个单模型'''</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">    <span class="comment"># print(j, clf)</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">    dataset_blend_test_j = np.zeros((X_predict.shape[<span class="number">0</span>], len(skf)))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">for</span> i, (train, test) <span class="keyword">in</span> enumerate(skf):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line">        <span class="string">'''使用第i个部分作为预测，剩余的部分来训练模型，获得其预测的输出作为第i部分的新特征。'''</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line">        <span class="comment"># print("Fold", i)</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line">        X_train, y_train, X_test, y_test = X[train], y[train], X[test], y[test]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line">        clf.fit(X_train, y_train)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">37</span></pre></td><td class="code"><pre><span class="line">        y_submission = clf.predict_proba(X_test)[:, <span class="number">1</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">38</span></pre></td><td class="code"><pre><span class="line">        dataset_blend_train[test, j] = y_submission</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">39</span></pre></td><td class="code"><pre><span class="line">        dataset_blend_test_j[:, i] = clf.predict_proba(X_predict)[:, <span class="number">1</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">40</span></pre></td><td class="code"><pre><span class="line">    <span class="string">'''对于测试集，直接用这k个模型的预测值均值作为新的特征。'''</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">41</span></pre></td><td class="code"><pre><span class="line">    dataset_blend_test[:, j] = dataset_blend_test_j.mean(<span class="number">1</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">42</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">43</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 用建立第二层模型</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">44</span></pre></td><td class="code"><pre><span class="line">clf2 = LogisticRegression(C=<span class="number">0.1</span>,max_iter=<span class="number">100</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">45</span></pre></td><td class="code"><pre><span class="line">clf2.fit(dataset_blend_train, y)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">46</span></pre></td><td class="code"><pre><span class="line">y_submission = clf2.predict_proba(dataset_blend_test)[:, <span class="number">1</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">47</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">48</span></pre></td><td class="code"><pre><span class="line">test = pd.read_csv(<span class="string">"test.csv"</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">49</span></pre></td><td class="code"><pre><span class="line">test[<span class="string">"Survived"</span>] = clf2.predict(dataset_blend_test)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">50</span></pre></td><td class="code"><pre><span class="line">test[[<span class="string">'PassengerId'</span>,<span class="string">'Survived'</span>]].set_index(<span class="string">'PassengerId'</span>).to_csv(<span class="string">'stack3.csv'</span>)</span></pre></td></tr></table></figure>
+
+
+	
+	</div>
+	
+	<div id="current-post-cover" data-scr="/img/cart_cover.jpg"></div>
+
+	<!-- relate post, comment...-->
+	<div class="investment-container">
+		<div class="investment-header">
+			<div class="investment-title-1">
+				<div class="on">相关文章</div>
+				<div>评论</div>
+				<div>分享</div>
+			</div>
+			<div class="investment-title-2">	            
+				
+	<span>
+		<a href="javascript: window.scrollTo(0, 0);" target="_blank" rel="noopener">返回顶部</a>
+		
+			<a href="/2019/12/06/hello-world/" title="Hello World" rel="prev">
+				&laquo;上一篇
+			</a>
+		
+			
+	</span>
+
+
+      		
+			</div>	
+		</div>
+		
+		<div class="investment-content">
+			<div class="investment-content-list">
+				
+
+<div class="relate-post">
+	
+		<ul>
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2019/12/06/hello-world/" title="Hello World">
+								Hello World			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								十二月 6日, 2019				
+							</p>
+							<p class="relate-post-content">
+								Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using ...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2019/12/06/hello-world/" title="Hello World">				
+								
+								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/cart_cover.jpg" alt="Hello World"/>
+							</a>
+						</div>
+					</li>											
+			
+			
+		</ul>
+	
+</div>	
+			</div>
+			<div class="investment-content-list">
+				<div class="layout-comment">
+
+	
+
+		
+
+			<!-- I don't know !!!-->
+			<div>Please check the comment setting in config.yml of hexo-theme-Annie!</div>
+			
+		
+		
+	
+
+</div>
+			</div>
+			<div class="investment-content-list">
+				<div class="layout-share">
+	
+	
+
+		
+			
+			<!-- socialShare share -->
+			<div class="social-share"></div>
+
+<!--  css & js -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+			
+		
+		
+	
+</div>
+
+
+			</div>
+		</div>	
+	</div>
+	</div>
+</div>
+
+
+
+	<!-- leancloud -->
+	<!--
+	时间：2018-11-27
+	描述：
+		文章访问量：visitors
+		文章喜欢量：likes	
+		文章排行榜：topNPost
+		其他得说明：
+			01-Cookie相关的函数 
+				https://blog.csdn.net/somehow1002/article/details/78511541（Author：somehow1002）
+			02-visitors相关的函数 
+				https://blog.csdn.net/u013553529/article/details/63357382（Author：爱博客大伯）
+				https://notes.doublemine.me/2015-10-21-为NexT主题添加文章阅读量统计功能.html（Author：夏末）
+			03-topNPost相关的函数
+				https://hoxis.github.io/hexo-next-read-rank.html（Author：hoxis）
+			04-likes相关的函数，
+				参考了01 & 02进行简单的设计与实现
+-->
+
+
+	
+
+
+<!-- show math formula -->
+
+
+
+	 
+	<script src="/plugin/clipboard/clipboard.js"></script>
+	<script>
+		// Copy code !
+	    function codePreprocessing() {
+	        $("#article-content .highlight").each(function() {
+
+	            $(this).wrap('<div id="post-code"></div>');
+
+	        })
+
+	        $("#article-content #post-code").each(function() {
+
+	            $(this).prepend('<nav class="copy-nav"><span><i class="code-language"></i></span></nav>');
+
+	        })
+
+	        $("#article-content .copy-nav").each(function() {
+	            var temp = $(this).next().attr('class'),
+	                language = ((temp.length > 9) && (temp != null)) ? temp.substr(10) : "none"; //why 9? Need to check language?
+
+	            $(this).find('.code-language').text(language);
+
+	            $(this).append('<span class="copy-btn"><i class="fa fa-copy" aria-hidden="true"></i></span>');
+
+	        });
+	    }
+
+		function codeCopy() {
+		    $('#article-content #post-code').each(function(i) {
+		        var codeCopyId = 'codeCopy-' + i;
+
+		        var codeNode = $(this).find('.code'),
+		            copyButton = $(this).find('.copy-btn');
+
+		        codeNode.attr('id', codeCopyId);
+		        copyButton.attr('data-clipboard-target-id', codeCopyId);
+		    })
+
+		    
+			var clipboard = new ClipboardJS('.copy-btn', {
+					target: function(trigger) {
+						return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+					}
+		      	});
+
+			//pure js
+			function showTooltip(elem, msg) {		   
+				elem.setAttribute('aria-label', msg);
+				elem.setAttribute('class', 'copy-btn copy-status');
+				setTimeout(function() {
+					elem.setAttribute('class', 'copy-btn');
+				}, 2000);
+			}
+
+			clipboard.on('success', function(e) {
+			    e.clearSelection();
+			    console.info('Action:', e.action);		   
+			    console.info('Trigger:', e.trigger);
+			    showTooltip(e.trigger, 'Copied!');
+			    
+			});
+			clipboard.on('error', function(e) {
+			    console.error('Action:', e.action);
+			    console.error('Trigger:', e.trigger);
+			});
+		
+
+		}
+
+		if ($('.layout-post').length) {
+		    codePreprocessing();
+		    codeCopy();
+		} 
+	</script>
+
+
+
+
+
+<link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+<script src="/plugin/fancybox/jquery.fancybox.js"></script>
+
+<script type="text/javascript">
+	var titleID = $('.article-title a'),
+		imageID = $('.article-content img'),
+		videoID = $('.article-content video');
+
+	var postTitle = titleID.text() ? titleID.text() : "No post title!";
+
+	imageID.each(function() {
+		var imgPath = $(this).attr('src'),
+			imgTitle = $(this).attr('alt') ? $(this).attr('alt') : "No image description!";
+
+		//给每个匹配的<img>元素打包, 即添加父元素<a>
+		$(this).wrap('<a data-fancybox="gallery" data-caption=" 《 ' + postTitle + ' 》 ' + imgTitle + ' "  href=" ' + imgPath + ' "> </a>');
+	});
+
+	videoID.each(function() {
+		var videoPath = $(this).attr('src');
+
+		//给每个匹配的<img>元素打包, 即添加父元素<a>
+		$(this).wrap('<a data-fancybox href=" ' + videoPath + ' "> </a>');
+	});
+	//TODO：支持html5 video
+
+	if($('#layout-post').length) {
+		$('[data-fancybox="gallery"]').fancybox({
+			loop: true,
+			buttons: [
+				"zoom",
+				"share",
+				"slideShow",
+				"fullScreen",
+				//"download",
+				"thumbs",
+				"close"
+			],
+			protect: false
+		});
+	}
+</script>
+		</main>
+
+		<!--footer-->
+		<footer>
+	<div class="social">
+		<ul>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<i class="fa fa-github"></i>
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<i class="fa fa-weibo"></i>
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<i class="fa fa-pinterest"></i>
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<i class="fa fa-instagram"></i>
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<i class="fa fa-twitter"></i>
+			</a>
+		</li>
+	
+		<li>
+			<a href="/atom.xml" target="_blank">
+				<i class="fa fa-rss"></i>
+			</a>
+		</li>
+			
+</ul>
+
+	</div>
+		
+	<div class="copyright">
+		<p>
+			 
+				&copy;2017 - 2019, content by huiye. All Rights Reserved.
+			
+			
+			
+
+	<!-- busuanzi -->
+	<!-- busuanzi -->
+
+		
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+
+		<span id="busuanzi_container_page_pv">
+	  		本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+		</span>
+
+	
+
+
+
+
+		</p>
+		<p>
+			<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.
+			<a href="javascript:zh_tran(' target="_blank" rel="noopener"s');" class="zh_click" id="zh_click_s">简体</a> 
+			<a href="javascript:zh_tran(' target="_blank" rel="noopener"t');" class="zh_click" id="zh_click_t">繁體</a>				
+		</p>
+	</div>		
+</footer>
+		
+	<!-- set '1' to show motto in all pages! -->
+
+	<script src="/plugin/motto/motto.js"></script>
+	
+	<script type="text/javascript">
+		$(".motto").html( getMingYanContent() );
+	</script>	
+
+
+
+
+
+<!-- love effect -->
+
+	<script src="/plugin/love/love.js"></script>
+
+
+<!-- back to top -->
+
+	
+	<div id="totop">
+  		<a href="javascript:;" target="_blank" rel="noopener"  name="TOTOP" class="fa fa-arrow-up" ></a>
+	</div>
+
+
+
+
+<!-- site analysis -->
+
+
+	<!-- site-analysis -->
+	
+
+	
+	
+	
+	
+ 
+
+<script src="/plugin/vibrant/vibrant.js"></script>
+<script src="/plugin/chinese/chinese.js"></script>
+<script src="/plugin/imgLazyLoader/yall.min.js"></script>
+<script src="/plugin/imgResize/jquery.resizeimagetoparent.min.js"></script>
+<script src="/plugin/nicescroll/jquery.nicescroll.js"></script>
+<script src="/js/resizediv.js"></script>
+<script src="/js/main.js"></script>
+	</body>	
+</html>
