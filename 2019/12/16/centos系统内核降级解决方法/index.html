@@ -13,7 +13,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
   <title>
     
-      Linux非root用户安装融合基因检测软件pizzly教程与cmake3.14和gcc.5.4安装 | HandsYe
+      centos系统内核降级解决方法 | HandsYe
     
   </title>
   <meta name="author" content="HuiYe">
@@ -160,7 +160,7 @@
 	<!-- Page title -->
 	<p>
 		
-			当前文章&nbsp;:&nbsp;《Linux非root用户安装融合基因检测软件pizzly教程与cmake3.14和gcc.5.4安装》
+			当前文章&nbsp;:&nbsp;《centos系统内核降级解决方法》
 		
 	</p>
 
@@ -277,8 +277,8 @@
 	<div class="article-title">
 		<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
 		
-	<a href="/2019/03/14/Linux%E9%9D%9Eroot%E7%94%A8%E6%88%B7%E5%AE%89%E8%A3%85%E8%9E%8D%E5%90%88%E5%9F%BA%E5%9B%A0%E6%A3%80%E6%B5%8B%E8%BD%AF%E4%BB%B6pizzly%E6%95%99%E7%A8%8B%E4%B8%8Ecmake3-14%E5%92%8Cgcc-5-4%E5%AE%89%E8%A3%85/" itemprop="url">
-		Linux非root用户安装融合基因检测软件pizzly教程与cmake3.14和gcc.5.4安装
+	<a href="/2019/12/16/centos%E7%B3%BB%E7%BB%9F%E5%86%85%E6%A0%B8%E9%99%8D%E7%BA%A7%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" itemprop="url">
+		centos系统内核降级解决方法
 	</a>
 
 	</div>
@@ -291,9 +291,9 @@
 
 	发布于
 
-	<a href="/2019/03/14/Linux%E9%9D%9Eroot%E7%94%A8%E6%88%B7%E5%AE%89%E8%A3%85%E8%9E%8D%E5%90%88%E5%9F%BA%E5%9B%A0%E6%A3%80%E6%B5%8B%E8%BD%AF%E4%BB%B6pizzly%E6%95%99%E7%A8%8B%E4%B8%8Ecmake3-14%E5%92%8Cgcc-5-4%E5%AE%89%E8%A3%85/" itemprop="url">
-		<time datetime="2019-03-14T08:40:20.000Z" itemprop="datePublished">
-	  		2019-03-14
+	<a href="/2019/12/16/centos%E7%B3%BB%E7%BB%9F%E5%86%85%E6%A0%B8%E9%99%8D%E7%BA%A7%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" itemprop="url">
+		<time datetime="2019-12-16T07:37:48.000Z" itemprop="datePublished">
+	  		2019-12-16
 	  </time>
 	</a>
 	&nbsp;
@@ -309,9 +309,9 @@
 
 	更新于
 
-	<a href="/2019/03/14/Linux%E9%9D%9Eroot%E7%94%A8%E6%88%B7%E5%AE%89%E8%A3%85%E8%9E%8D%E5%90%88%E5%9F%BA%E5%9B%A0%E6%A3%80%E6%B5%8B%E8%BD%AF%E4%BB%B6pizzly%E6%95%99%E7%A8%8B%E4%B8%8Ecmake3-14%E5%92%8Cgcc-5-4%E5%AE%89%E8%A3%85/" itemprop="url">
-		<time datetime="2019-03-14T08:40:20.000Z" itemprop="dateUpdated">
-	  		2019-12-09
+	<a href="/2019/12/16/centos%E7%B3%BB%E7%BB%9F%E5%86%85%E6%A0%B8%E9%99%8D%E7%BA%A7%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" itemprop="url">
+		<time datetime="2019-12-16T07:37:48.000Z" itemprop="dateUpdated">
+	  		2019-12-16
 	  </time>
 	</a> 
 
@@ -322,8 +322,8 @@
 			<i class="fa fa-tags"></i>
 			
 	
-		<a href="/tags/%E8%9E%8D%E5%90%88%E5%9F%BA%E5%9B%A0/" class=" ">
-			融合基因
+		<a href="/tags/%E5%86%85%E6%A0%B8kernel/" class=" ">
+			内核kernel
 		</a>
 	
 		
@@ -336,21 +336,29 @@
 	</div>
 
 	<div class="article-content" id="article-content">
-		<p> <strong>废话不多说，直接上干货。</strong></p>
-<h3 id="1-下载软件并安装"><a href="#1-下载软件并安装" class="headerlink" title="1. 下载软件并安装"></a>1. 下载软件并安装</h3><p>软件GitHub地址： <a href="https://github.com/pmelsted/pizzly" target="_blank" rel="noopener">https://github.com/pmelsted/pizzly</a>    </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">git clone https://github.com/pmelsted/pizzly.git</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">cd pizzly</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">mkdir build</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">cd build</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">cmake ..</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">make</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">make install</span></pre></td></tr></table></figure>
-<h3 id="2-解决安装过程中的bug"><a href="#2-解决安装过程中的bug" class="headerlink" title="2. 解决安装过程中的bug"></a>2. 解决安装过程中的bug</h3><p> 1.cmake版本太低导致安装失败，安装高于==cmake 3.0.0== 的版本。<br>     cmake下载地址：<a href="https://cmake.org/download/" target="_blank" rel="noopener">https://cmake.org/download/</a> 选择自己需要的版本，我以cmake-3.14.0-rc4.tar.gz为例</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">tar zxvf cmake-3.14.0-rc4.tar.gz</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">cd cmake-3.14.0-rc4</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">./bootstrap</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">./configure --prefix=/path/to/your/directory</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">make</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">make install</span></pre></td></tr></table></figure>
-<p>将安装好的/path/to/your/directory/bin目录添加到~/.bashrc中,source一下。<br>检查cmake版本 cmake -v，出现版本号则安装完成。<br>2.gcc版本太低导致安装失败，安装高于==gcc 4.9==的版本。<br>gcc下载地址：<a href="http://ftp.gnu.org/gnu/gcc/" target="_blank" rel="noopener">http://ftp.gnu.org/gnu/gcc/</a> 选择自己需要的版本，我以gcc-5.4.0.tar.gz为例<br>安装gcc需要安装几个依赖包GMP, MPFR 和 MPC，直接运行gcc-5.4.0目录下的    ==./contrib/download_prerequisites==，<br>接下来是配置编译选项，配置之前要记住很重要的一点，安装gcc不能在它的源码目录下直接配置，需要在它的目录下新建一个文件夹，然后进入这个文件夹配置并编译安装。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">tar zxvf gcc-5.4.0.tar.gz</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">cd gcc-5.4.0</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">./contrib/download_prerequisites</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">mkdir directory</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">cd directory</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">../configure --disable-checking --enable-languages=c,c++,fortran --disable-multilib --prefix=/path/to/install/gcc-5.4 --enable-threads=posix</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">make -j8 #线程数,不要邪恶，真不是故意写的</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">make install</span></pre></td></tr></table></figure>
-<p>安装好之后将下面两行添加到~/.bashrc中,source一下。<br>检查gcc版本 gcc -v，出现版本号则安装完成。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">添加到bashrc中，请自行更换目录</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">export PATH=/path/to/install/gcc-5.4/bin:/path/to/install/gcc-5.4/lib64:$PATH</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">export LD_LIBRARY_PATH=/path/to/install/gcc-5.4/lib/:$LD_LIBRARY_PATH</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">检查版本号</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">gcc -v</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">gcc version 5.4.0 (GCC)</span></span></pre></td></tr></table></figure>
-<p>3.安装pizzly的==cmake==过程中报错<br><img src="https://img-blog.csdnimg.cn/2019031417453332.png" alt="在这里插入图片描述"><br>虽然安装了更高版本的gcc，但是还是使用了系统自带的gcc，将下列两行添加到~/.bashrc中,source一下。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">添加到bashrc中，请自行更换目录</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">CC=/path/to/install/gcc-5.4/bin/gcc</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">export CC</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">CXX=/path/to/install/gcc-5.4/bin/g++</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">export CXX</span></pre></td></tr></table></figure>
-<p>重新试一次，完美解决。<br><img src="https://img-blog.csdnimg.cn/20190314175151800.png" alt="在这里插入图片描述"><br>4.make install过程中报错<br>这一步是将生成的执行文件==pizzly==拷贝到/usr/local/bin/目录下，因为无root权限所以会出现错误，<br>将生成的==pizzly==添加到~/.bashrc中,source一下。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">添加到bashrc中，请自行更换目录</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">pizzly=/path/to/install/pizzly/build/pizzly</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">export pizzly</span></pre></td></tr></table></figure>
-<p>运行一下<br><img src="https://img-blog.csdnimg.cn/20190314180731433.png" alt="在这里插入图片描述"></p>
-<h3 id="3-安装完成。"><a href="#3-安装完成。" class="headerlink" title="3.安装完成。"></a>3.安装完成。</h3><p>有问题请留言或联系作者。</p>
+		<h1 id="centos系统内核降级解决方法"><a href="#centos系统内核降级解决方法" class="headerlink" title="centos系统内核降级解决方法"></a>centos系统内核降级解决方法</h1><p>@(关键字)[yum, 内核 kernel, centos7]</p>
+<hr>
+<p>[TOC]</p>
+<p>##背景</p>
+<p>当你使用<strong>yum</strong>或<strong>rpm</strong>更新软件的时候，下载软件的时候，可能有意无意的升级了你的系统内核。系统内核升级之后可能导致系统之前配置好的某些功能无法使用，此时就要将系统内核降级到之前的版本。</p>
+<p>##查看系统版本<br>运行下面的命令查看<br>示例：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">cat /etc/redhat-release</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#CentOS Linux release 7.6.1810 (Core)</span></span></pre></td></tr></table></figure>
+<p>##查看内核版本<br>运行下面的命令查看<br>示例：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">uname -a</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#Linux mn02 3.10.0-957.27.2.el7.x86_64 #1 SMP Mon Jul 29 17:46:05 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">uname -r</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#3.10.0-957.27.2.el7.x86_64</span></span></pre></td></tr></table></figure>
+<p>##查看系统上所有的内核</p>
+<p>centos7 查看内核的文件在<strong>/boot/efi/EFI/centos/grub.cfg</strong>下<br>示例：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">awk -F<span class="string">'\'</span> <span class="string">'$1=="menuentry " &#123;print i++ " : " $2&#125;'</span> /boot/efi/EFI/centos/grub.cfg</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#0 : CentOS Linux (3.10.0-957.27.2.el7.x86_64) 7 (Core)</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#1 : CentOS Linux (3.10.0-957.21.3.el7.x86_64) 7 (Core)</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#2 : CentOS Linux (3.10.0-957.el7.x86_64) 7 (Core)</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#3 : CentOS Linux (0-rescue-bed5b07b418b402da3b94d3847a6f12c) 7 (Core)</span></span></pre></td></tr></table></figure>
+<p>##修改内核版本</p>
+<h3 id="1-查看当前启动版本"><a href="#1-查看当前启动版本" class="headerlink" title="1 查看当前启动版本"></a>1 查看当前启动版本</h3><p>运行下面的命令查看<br>示例：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">grub2-editenv list</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#saved_entry=CentOS Linux (3.10.0-957.el7.x86_64) 7 (Core)</span></span></pre></td></tr></table></figure>
+
+<p>###2 修改启动版本<br>运行下面的命令设置<br>示例：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">grub2-set-default <span class="string">"CentOS Linux (3.10.0-957.21.3.el7.x86_64) 7 (Core)"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#选择你需要的版本信息</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#CentOS Linux (3.10.0-957.21.3.el7.x86_64) 7 (Core)</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#确认是否修改，查看</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">grub2-editenv list</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#修改成功</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#saved_entry=CentOS Linux (3.10.0-957.21.3.el7.x86_64) 7 (Core)</span></span></pre></td></tr></table></figure>
+<p>###3 设置yum禁止升级内核和系统<br>在<strong>/etc/yum.conf</strong><code>[main]</code>下添加以下两句，至此修改完成。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">vim /etc/yum.conf</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">[main]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">exclude=kernel*</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">exclude=centos-release*</span></pre></td></tr></table></figure>
+<blockquote>
+<p>本文原创，如需转发转载请注明出处。</p>
+</blockquote>
 	
 	</div>
 	
@@ -369,12 +377,8 @@
 	<span>
 		<a href="javascript: window.scrollTo(0, 0);" target="_blank" rel="noopener">返回顶部</a>
 		
-			<a href="/2019/12/16/centos%E7%B3%BB%E7%BB%9F%E5%86%85%E6%A0%B8%E9%99%8D%E7%BA%A7%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" title="centos系统内核降级解决方法" rel="prev">
-				&laquo;上一篇
-			</a>
 		
-		
-			<a href="/2018/11/13/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E4%B9%8BKAGGLE-%E6%B3%B0%E5%9D%A6%E5%B0%BC%E5%85%8B%E5%8F%B7%E4%BA%BA%E5%91%98%E7%94%9F%E5%AD%98%E9%A2%84%E6%B5%8B%E9%97%AE%E9%A2%98/" title="数据分析之KAGGLE-泰坦尼克号人员生存预测问题" rel="next">
+			<a href="/2019/03/14/Linux%E9%9D%9Eroot%E7%94%A8%E6%88%B7%E5%AE%89%E8%A3%85%E8%9E%8D%E5%90%88%E5%9F%BA%E5%9B%A0%E6%A3%80%E6%B5%8B%E8%BD%AF%E4%BB%B6pizzly%E6%95%99%E7%A8%8B%E4%B8%8Ecmake3-14%E5%92%8Cgcc-5-4%E5%AE%89%E8%A3%85/" title="Linux非root用户安装融合基因检测软件pizzly教程与cmake3.14和gcc.5.4安装" rel="next">
 				下一篇&raquo;
 			</a>
 			
@@ -395,26 +399,24 @@
 			
 					<li>
 						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2019/12/16/centos%E7%B3%BB%E7%BB%9F%E5%86%85%E6%A0%B8%E9%99%8D%E7%BA%A7%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" title="centos系统内核降级解决方法">
-								centos系统内核降级解决方法			
+							<a class="relate-post-title" href="/2019/03/14/Linux%E9%9D%9Eroot%E7%94%A8%E6%88%B7%E5%AE%89%E8%A3%85%E8%9E%8D%E5%90%88%E5%9F%BA%E5%9B%A0%E6%A3%80%E6%B5%8B%E8%BD%AF%E4%BB%B6pizzly%E6%95%99%E7%A8%8B%E4%B8%8Ecmake3-14%E5%92%8Cgcc-5-4%E5%AE%89%E8%A3%85/" title="Linux非root用户安装融合基因检测软件pizzly教程与cmake3.14和gcc.5.4安装">
+								Linux非root用户安装融合基因检测软件pizzly教程与cmake3.14和gcc.5.4安装			
 							</a>
 							<p class="relate-post-date">
 								<i class="fa fa-calendar"></i>
-								十二月 16日, 2019				
+								三月 14日, 2019				
 							</p>
 							<p class="relate-post-content">
-								centos系统内核降级解决方法@(关键字)[yum, 内核 kernel, centos7]
-
-[TOC]
-##背景
-当你使用yum或rpm更新软件的时候，下载软件的时候，可能有意无意的升级了你的系统内核。系统内核升级之后可能导致系...
+								 废话不多说，直接上干货。
+1. 下载软件并安装软件GitHub地址： https://github.com/pmelsted/pizzly    
+1git clone https://github.com/pmelsted/piz...
 							</p>
 						</div>
 
 						<div class="relate-post-cover">
-							<a href="/2019/12/16/centos%E7%B3%BB%E7%BB%9F%E5%86%85%E6%A0%B8%E9%99%8D%E7%BA%A7%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" title="centos系统内核降级解决方法">				
+							<a href="/2019/03/14/Linux%E9%9D%9Eroot%E7%94%A8%E6%88%B7%E5%AE%89%E8%A3%85%E8%9E%8D%E5%90%88%E5%9F%BA%E5%9B%A0%E6%A3%80%E6%B5%8B%E8%BD%AF%E4%BB%B6pizzly%E6%95%99%E7%A8%8B%E4%B8%8Ecmake3-14%E5%92%8Cgcc-5-4%E5%AE%89%E8%A3%85/" title="Linux非root用户安装融合基因检测软件pizzly教程与cmake3.14和gcc.5.4安装">				
 								
-								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/cart_cover.jpg" alt="centos系统内核降级解决方法"/>
+								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/cart_cover.jpg" alt="Linux非root用户安装融合基因检测软件pizzly教程与cmake3.14和gcc.5.4安装"/>
 							</a>
 						</div>
 					</li>											
