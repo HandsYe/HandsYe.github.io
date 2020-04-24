@@ -1,342 +1,104 @@
-<!--
-	作者：Sariay
-	时间：2018-09-25
-	描述：There may be a bug, but don't worry, QiLing(器灵) says that it can work normally!
--->
 <!DOCTYPE html>
-<html class="html-loading">
-		
-
+<html>
 <head>
-	<meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
-  <title>
-    
-      数据分析之KAGGLE-泰坦尼克号人员生存预测问题 | HandsYe
-    
-  </title>
-  <meta name="author" content="HuiYe">
-  <meta name="keywords" content="" />
-  <meta name="description" content="不为空" />
-	<!-- favicon -->
-  <link rel="shortcut icon" href="/img/bit.ico">
-
-  <!-- css -->
-  <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="/css/Annie.css">
+  <meta charset="utf-8">
   
-  <!-- jquery -->
-	<script src="/js/jquery.min.js"></script>
 
-  <!-- leancloud -->
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-<script src="/js/leancloud.js"></script>
+  
+  <title>数据分析之KAGGLE-泰坦尼克号人员生存预测问题 | HandsYe</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="分析目的完成对什么样的人可能生存的分析。 分析步骤1、数据分析数据下载和加载数据集下载地址：https:&#x2F;&#x2F;www.kaggle.com&#x2F;c&#x2F;titanic&#x2F;data 数据说明   特征 描述    survival 生存   pclass 票类别   sex 性别   Age 年龄   sibsp 兄弟姐妹&#x2F;配偶   parch 父母&#x2F;孩子的数量   ticket 票号   fare 乘客票价">
+<meta name="keywords" content="机器学习,数据分析">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据分析之KAGGLE-泰坦尼克号人员生存预测问题">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2018&#x2F;11&#x2F;13&#x2F;%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E4%B9%8BKAGGLE-%E6%B3%B0%E5%9D%A6%E5%B0%BC%E5%85%8B%E5%8F%B7%E4%BA%BA%E5%91%98%E7%94%9F%E5%AD%98%E9%A2%84%E6%B5%8B%E9%97%AE%E9%A2%98&#x2F;index.html">
+<meta property="og:site_name" content="HandsYe">
+<meta property="og:description" content="分析目的完成对什么样的人可能生存的分析。 分析步骤1、数据分析数据下载和加载数据集下载地址：https:&#x2F;&#x2F;www.kaggle.com&#x2F;c&#x2F;titanic&#x2F;data 数据说明   特征 描述    survival 生存   pclass 票类别   sex 性别   Age 年龄   sibsp 兄弟姐妹&#x2F;配偶   parch 父母&#x2F;孩子的数量   ticket 票号   fare 乘客票价">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;2018111216530019.png?x-oss-process&#x3D;image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hhbmRzeWU&#x3D;,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20181112170103740.png?x-oss-process&#x3D;image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hhbmRzeWU&#x3D;,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20181112220058219.png?x-oss-process&#x3D;image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hhbmRzeWU&#x3D;,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;2018111222112011.png?x-oss-process&#x3D;image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hhbmRzeWU&#x3D;,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2019-12-17T05:59:19.647Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;2018111216530019.png?x-oss-process&#x3D;image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hhbmRzeWU&#x3D;,size_16,color_FFFFFF,t_70">
+  
+    <link rel="alternate" href="/atom.xml" title="HandsYe" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
 </head>
-	<body>
-		<!-- Preloader -->
 
-	<div id="preloader">
-		<div class="pre-container">
-			
-				<div class="spinner">
-					<div class="double-bounce1"></div>
-					<div class="double-bounce2"></div>
-				</div>
-						
-		</div>
-	</div>
-
-
-<!-- header -->
-<header class="fixbackground" data-img-mode="normal" data-normal-src="/img/cat2.jpg" data-random-max="110" data-random-src="https://github.com/Sariay/Random-img/">
-	<div class="mask">
-		<!-- Logo and navigation -->
-		<div class="h-header">
-			<div id="logo">
-				<a href="/">
-					
-						Welcome
-					
-				</a>
-			</div>
-			
-			<div id="navigation-show">
-				<ul>
-	
-		<li class="menu-home">
-			<a href="/" class="menu-item-home">主页</a>
-		</li>
-	
-		<li class="menu-archive">
-			<a href="/archives" class="menu-item-archive">归档</a>
-		</li>
-	
-		<li class="menu-categories">
-			<a href="/categories" class="menu-item-categories">分类</a>
-		</li>
-	
-		<li class="menu-tags">
-			<a href="/tags" class="menu-item-tags">标签</a>
-		</li>
-	
-		<li class="menu-about">
-			<a href="/about" class="menu-item-about">关于</a>
-		</li>
-	
-		<li class="menu-gallery">
-			<a href="/gallery" class="menu-item-gallery">相册</a>
-		</li>
-	
-
-	
-		<li class="menu-search">
-			<a href="javascript:;" target="_blank" rel="noopener" class="popup-trigger">搜索</a>
-		</li>
-	
-</ul>
-			</div>				
-		</div>
-
-		<!-- motto -->
-		<div class="h-body">	
-			
-				<p class="motto"></p>
-			
-		</div>
-		
-		<!-- others: such as time... -->			
-		<div class="h-footer">
-			<a href="javascript:;" target="_blank" rel="noopener" id="read-more"><i class="fa fa-angle-double-down" aria-hidden="true"></i>
-			</a>
-
-			
-				<!-- 
-	This is only a demo, please go to "https://time.is" to set your city time! 
--->
-<style type="text/css">
-	.header-date {
-		font-size: 1.6rem;
-		color: #fff;
-		position: absolute;
-		bottom: 5px;
-		right: 1rem;
-		writing-mode: tb-rl;
-	}	
-	
-	.header-date a {
-		border-bottom: none;
-	}
-
-	@media only screen and (max-width: 768 ) {
-		.header-date {
-			font-size: 1rem;
-		}			
-	}
-</style>
-<div class="header-date">
-	<a href="https://time.is/Beijing" target="_blank" id="time_is_link" rel="nofollow noopener" ></a>
-	<span id="Beijing_z43d"></span>
-</div>
-<script src="//widget.time.is/zh.js"></script>
-<script>
-	time_is_widget.init({
-		Beijing_z43d:{
-			template:"DATE", 
-			date_format:"year年 monthname dnum日"
-		}
-	});
-</script>
-			
-		</div>
-	</div>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">HandsYe</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">不为空</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
 </header>
+      <div class="outer">
+        <section id="main"><article id="post-数据分析之KAGGLE-泰坦尼克号人员生存预测问题" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/13/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E4%B9%8BKAGGLE-%E6%B3%B0%E5%9D%A6%E5%B0%BC%E5%85%8B%E5%8F%B7%E4%BA%BA%E5%91%98%E7%94%9F%E5%AD%98%E9%A2%84%E6%B5%8B%E9%97%AE%E9%A2%98/" class="article-date">
+  <time datetime="2018-11-13T03:07:54.000Z" itemprop="datePublished">2018-11-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Python/">Python</a>
+  </div>
 
-<div id="navigation-hide">
-	<!-- Progress bar -->
-	<div id="progress-bar"></div>
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      数据分析之KAGGLE-泰坦尼克号人员生存预测问题
+    </h1>
+  
 
-	<!-- Progress percent -->
-	<div id="progress-percentage"><h1>0.0%</h1></div>
-
-	<div class="toc-switch"><span class="switch-button">目录</span></div>
-
-	<!-- Page title -->
-	<p>
-		
-			当前文章&nbsp;:&nbsp;《数据分析之KAGGLE-泰坦尼克号人员生存预测问题》
-		
-	</p>
-
-	<!-- Nav trigger for navigation-H-->
-	<a class="nav-trigger"><span></span></a>
-</div>
-
-<!-- Navigation in div(id="navigation-H") -->
-<nav class="nav-container" id="cd-nav">
-	<div class="nav-header">
-		<h3>Navigation</h3>
-		<a href="javascript:;" target="_blank" rel="noopener" class="nav-close"></a>
-	</div>
-	<div class="nav-body">
-		<ul>
-	
-		<li class="menu-home">
-			<a href="/" class="menu-item-home">主页</a>
-		</li>
-	
-		<li class="menu-archive">
-			<a href="/archives" class="menu-item-archive">归档</a>
-		</li>
-	
-		<li class="menu-categories">
-			<a href="/categories" class="menu-item-categories">分类</a>
-		</li>
-	
-		<li class="menu-tags">
-			<a href="/tags" class="menu-item-tags">标签</a>
-		</li>
-	
-		<li class="menu-about">
-			<a href="/about" class="menu-item-about">关于</a>
-		</li>
-	
-		<li class="menu-gallery">
-			<a href="/gallery" class="menu-item-gallery">相册</a>
-		</li>
-	
-
-	
-		<li class="menu-search">
-			<a href="javascript:;" target="_blank" rel="noopener" class="popup-trigger">搜索</a>
-		</li>
-	
-</ul>
-	</div>
-	<div class="nav-footer">
-		<ul>
-	
-		<li>
-			<a href="https://github.com/HandsYe" target="_blank">
-				<i class="fa fa-github"></i>
-			</a>
-		</li>
-	
-		<li>
-			<a href="https://weibo.com/" target="_blank">
-				<i class="fa fa-weibo"></i>
-			</a>
-		</li>
-	
-		<li>
-			<a href="https://www.instagram.com/" target="_blank">
-				<i class="fa fa-instagram"></i>
-			</a>
-		</li>
-	
-		<li>
-			<a href="https://github.com/HandsYe" target="_blank">
-				<i class="fa fa-twitter"></i>
-			</a>
-		</li>
-			
-</ul>
-
-	</div>
-</nav>
-			
-		<!--main-->
-		<main>
-			<!--
-	时间：2018-11-17
-	描述：
-		插件名称：katelog.min.js
-		插件作者：KELEN
-		插件来源: https://github.com/KELEN/katelog
--->
-
-	
-		<div class="layout-toc">
-			<div id="layout-toc">
-				<div class="k-catelog-list" id="catelog-list" data-title="文章目录"></div>
-			</div>
-		</div>
-
-		
-		<script src="/plugin/toc/katelog.min.js"></script>
-
-		
-	 
-
-<div class="layout-post">
-	<div id="layout-post">
-	<div class="article-title">
-		<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
-		
-	<a href="/2018/11/13/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E4%B9%8BKAGGLE-%E6%B3%B0%E5%9D%A6%E5%B0%BC%E5%85%8B%E5%8F%B7%E4%BA%BA%E5%91%98%E7%94%9F%E5%AD%98%E9%A2%84%E6%B5%8B%E9%97%AE%E9%A2%98/" itemprop="url">
-		数据分析之KAGGLE-泰坦尼克号人员生存预测问题
-	</a>
-
-	</div>
-
-	<div class="article-meta">
-		<span>
-			<i class="fa fa-calendar"></i>
-			
-
-
-	发布于
-
-	<a href="/2018/11/13/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E4%B9%8BKAGGLE-%E6%B3%B0%E5%9D%A6%E5%B0%BC%E5%85%8B%E5%8F%B7%E4%BA%BA%E5%91%98%E7%94%9F%E5%AD%98%E9%A2%84%E6%B5%8B%E9%97%AE%E9%A2%98/" itemprop="url">
-		<time datetime="2018-11-13T03:07:54.000Z" itemprop="datePublished">
-	  		2018-11-13
-	  </time>
-	</a>
-	&nbsp;
-
-
-
-
-
-			
-
-
-
-
-	更新于
-
-	<a href="/2018/11/13/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E4%B9%8BKAGGLE-%E6%B3%B0%E5%9D%A6%E5%B0%BC%E5%85%8B%E5%8F%B7%E4%BA%BA%E5%91%98%E7%94%9F%E5%AD%98%E9%A2%84%E6%B5%8B%E9%97%AE%E9%A2%98/" itemprop="url">
-		<time datetime="2018-11-13T03:07:54.000Z" itemprop="dateUpdated">
-	  		2019-12-17
-	  </time>
-	</a> 
-
-
-
-		</span>
-		<span>
-			<i class="fa fa-tags"></i>
-			
-	
-		<a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" class=" ">
-			机器学习
-		</a>
-	
-		<a href="/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" class=" ">
-			数据分析
-		</a>
-	
-		
-		</span>
-		
-		
-
-
-
-	</div>
-
-	<div class="article-content" id="article-content">
-		<h1 id="分析目的"><a href="#分析目的" class="headerlink" title="分析目的"></a>分析目的</h1><p>完成对什么样的人可能生存的分析。</p>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="分析目的"><a href="#分析目的" class="headerlink" title="分析目的"></a>分析目的</h1><p>完成对什么样的人可能生存的分析。</p>
 <h1 id="分析步骤"><a href="#分析步骤" class="headerlink" title="分析步骤"></a>分析步骤</h1><h2 id="1、数据分析"><a href="#1、数据分析" class="headerlink" title="1、数据分析"></a>1、数据分析</h2><h3 id="数据下载和加载"><a href="#数据下载和加载" class="headerlink" title="数据下载和加载"></a>数据下载和加载</h3><p>数据集下载地址：<a href="https://www.kaggle.com/c/titanic/data" target="_blank" rel="noopener">https://www.kaggle.com/c/titanic/data</a></p>
 <h3 id="数据说明"><a href="#数据说明" class="headerlink" title="数据说明"></a>数据说明</h3><table>
 <thead>
@@ -500,590 +262,143 @@
 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> VotingClassifier</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LogisticRegression</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">lr = LogisticRegression(C=<span class="number">0.1</span>,max_iter=<span class="number">100</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> xgboost <span class="keyword">as</span> xgb</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">xgb_model = xgb.XGBClassifier(max_depth=<span class="number">6</span>,min_samples_leaf=<span class="number">2</span>,n_estimators=<span class="number">100</span>,num_round = <span class="number">5</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> RandomForestClassifier</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">rf = RandomForestClassifier(n_estimators=<span class="number">200</span>,min_samples_leaf=<span class="number">2</span>,max_depth=<span class="number">6</span>,oob_score=<span class="literal">True</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> GradientBoostingClassifier</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">gbdt = GradientBoostingClassifier(learning_rate=<span class="number">0.1</span>,min_samples_leaf=<span class="number">2</span>,max_depth=<span class="number">6</span>,n_estimators=<span class="number">100</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">vot = VotingClassifier(estimators=[(<span class="string">'lr'</span>, lr), (<span class="string">'rf'</span>, rf),(<span class="string">'gbdt'</span>,gbdt),(<span class="string">'xgb'</span>,xgb_model)], voting=<span class="string">'hard'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">vot.fit(train_data_X_sd,train_data_Y)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">test[<span class="string">"Survived"</span>] = vot.predict(test_data_X_sd)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">test[[<span class="string">'PassengerId'</span>,<span class="string">'Survived'</span>]].set_index(<span class="string">'PassengerId'</span>).to_csv(<span class="string">'vot5.csv'</span>)</span></pre></td></tr></table></figure>
 <p><strong>模型融合 stacking</strong></p>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 划分train数据集,调用代码,把数据集名字转成和代码一样</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">X = train_data_X_sd</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">X_predict = test_data_X_sd</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">y = train_data_Y</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="string">'''模型融合中使用到的各个单模型'''</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LogisticRegression</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> svm</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> xgboost <span class="keyword">as</span> xgb</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> RandomForestClassifier</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> GradientBoostingClassifier</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">clfs = [LogisticRegression(C=<span class="number">0.1</span>,max_iter=<span class="number">100</span>),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">        xgb.XGBClassifier(max_depth=<span class="number">6</span>,n_estimators=<span class="number">100</span>,num_round = <span class="number">5</span>),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">        RandomForestClassifier(n_estimators=<span class="number">100</span>,max_depth=<span class="number">6</span>,oob_score=<span class="literal">True</span>),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">        GradientBoostingClassifier(learning_rate=<span class="number">0.3</span>,max_depth=<span class="number">6</span>,n_estimators=<span class="number">100</span>)]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建n_folds</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.cross_validation <span class="keyword">import</span> StratifiedKFold</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">n_folds = <span class="number">5</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">skf = list(StratifiedKFold(y, n_folds))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建零矩阵</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">dataset_blend_train = np.zeros((X.shape[<span class="number">0</span>], len(clfs)))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">dataset_blend_test = np.zeros((X_predict.shape[<span class="number">0</span>], len(clfs)))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 建立模型</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> j, clf <span class="keyword">in</span> enumerate(clfs):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">    <span class="string">'''依次训练各个单模型'''</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">    <span class="comment"># print(j, clf)</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">    dataset_blend_test_j = np.zeros((X_predict.shape[<span class="number">0</span>], len(skf)))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">for</span> i, (train, test) <span class="keyword">in</span> enumerate(skf):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">        <span class="string">'''使用第i个部分作为预测，剩余的部分来训练模型，获得其预测的输出作为第i部分的新特征。'''</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">        <span class="comment"># print("Fold", i)</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">        X_train, y_train, X_test, y_test = X[train], y[train], X[test], y[test]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line">        clf.fit(X_train, y_train)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line">        y_submission = clf.predict_proba(X_test)[:, <span class="number">1</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line">        dataset_blend_train[test, j] = y_submission</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line">        dataset_blend_test_j[:, i] = clf.predict_proba(X_predict)[:, <span class="number">1</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line">    <span class="string">'''对于测试集，直接用这k个模型的预测值均值作为新的特征。'''</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">37</span></pre></td><td class="code"><pre><span class="line">    dataset_blend_test[:, j] = dataset_blend_test_j.mean(<span class="number">1</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">38</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 用建立第二层模型</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">39</span></pre></td><td class="code"><pre><span class="line">clf2 = LogisticRegression(C=<span class="number">0.1</span>,max_iter=<span class="number">100</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">40</span></pre></td><td class="code"><pre><span class="line">clf2.fit(dataset_blend_train, y)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">41</span></pre></td><td class="code"><pre><span class="line">y_submission = clf2.predict_proba(dataset_blend_test)[:, <span class="number">1</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">42</span></pre></td><td class="code"><pre><span class="line">test = pd.read_csv(<span class="string">"test.csv"</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">43</span></pre></td><td class="code"><pre><span class="line">test[<span class="string">"Survived"</span>] = clf2.predict(dataset_blend_test)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">44</span></pre></td><td class="code"><pre><span class="line">test[[<span class="string">'PassengerId'</span>,<span class="string">'Survived'</span>]].set_index(<span class="string">'PassengerId'</span>).to_csv(<span class="string">'stack3.csv'</span>)</span></pre></td></tr></table></figure>
-	
-	</div>
-	
-	<div id="current-post-cover" data-scr="/img/Random-img/18.jpg"></div>
 
-	<!-- relate post, comment...-->
-	<div class="investment-container">
-		<div class="investment-header">
-			<div class="investment-title-1">
-				<div class="on">相关文章</div>
-				<div>评论</div>
-				<div>分享</div>
-			</div>
-			<div class="investment-title-2">	            
-				
-	<span>
-		<a href="javascript: window.scrollTo(0, 0);" target="_blank" rel="noopener">返回顶部</a>
-		
-			<a href="/2019/03/14/Linux%E9%9D%9Eroot%E7%94%A8%E6%88%B7%E5%AE%89%E8%A3%85%E8%9E%8D%E5%90%88%E5%9F%BA%E5%9B%A0%E6%A3%80%E6%B5%8B%E8%BD%AF%E4%BB%B6pizzly%E6%95%99%E7%A8%8B%E4%B8%8Ecmake3-14%E5%92%8Cgcc-5-4%E5%AE%89%E8%A3%85/" title="Linux非root用户安装融合基因检测软件pizzly教程与cmake3.14和gcc.5.4安装" rel="prev">
-				&laquo;上一篇
-			</a>
-		
-			
-	</span>
-
-
-      		
-			</div>	
-		</div>
-		
-		<div class="investment-content">
-			<div class="investment-content-list">
-				
-
-<div class="relate-post">
-	
-		<ul>
-			
-					<li>
-						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2020/04/24/MySQL-%E7%BB%8F%E5%85%B8%E7%BB%83%E4%B9%A0%E9%A2%98%EF%BC%88%E4%B8%8A%EF%BC%89/" title="MySQL 经典练习题（上）">
-								MySQL 经典练习题（上）			
-							</a>
-							<p class="relate-post-date">
-								<i class="fa fa-calendar"></i>
-								四月 24日, 2020				
-							</p>
-							<p class="relate-post-content">
-								已默认会安装和登录MySQL，此处不再赘述。
-创建数据集1CREATE DATABASE `test`;2USE `test`;3DROP TABLE IF EXISTS course;4CREATE TABLE course(5  ...
-							</p>
-						</div>
-
-						<div class="relate-post-cover">
-							<a href="/2020/04/24/MySQL-%E7%BB%8F%E5%85%B8%E7%BB%83%E4%B9%A0%E9%A2%98%EF%BC%88%E4%B8%8A%EF%BC%89/" title="MySQL 经典练习题（上）">				
-								
-								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/Random-img/48.jpg" alt="MySQL 经典练习题（上）"/>
-							</a>
-						</div>
-					</li>											
-			
-			
-					<li>
-						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2020/01/02/%E8%A1%8C%E4%B9%A6%E7%BB%83%E5%AD%97%E6%97%A5%E5%B8%B8-2/" title="行书练字日常-2">
-								行书练字日常-2			
-							</a>
-							<p class="relate-post-date">
-								<i class="fa fa-calendar"></i>
-								一月 2日, 2020				
-							</p>
-							<p class="relate-post-content">
-								1 2 3 
-本文原创，如需转发转载请注明出处。
-
-
-							</p>
-						</div>
-
-						<div class="relate-post-cover">
-							<a href="/2020/01/02/%E8%A1%8C%E4%B9%A6%E7%BB%83%E5%AD%97%E6%97%A5%E5%B8%B8-2/" title="行书练字日常-2">				
-								
-								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/Random-img/18.jpg" alt="行书练字日常-2"/>
-							</a>
-						</div>
-					</li>											
-			
-			
-					<li>
-						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2019/12/18/%E7%BB%83%E5%AD%97%E6%97%A5%E5%B8%B8-1/" title="行书练字日常-1">
-								行书练字日常-1			
-							</a>
-							<p class="relate-post-date">
-								<i class="fa fa-calendar"></i>
-								十二月 18日, 2019				
-							</p>
-							<p class="relate-post-content">
-								1 2 3 
-本文原创，如需转发转载请注明出处。
-
-
-							</p>
-						</div>
-
-						<div class="relate-post-cover">
-							<a href="/2019/12/18/%E7%BB%83%E5%AD%97%E6%97%A5%E5%B8%B8-1/" title="行书练字日常-1">				
-								
-								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/Random-img/13.jpg" alt="行书练字日常-1"/>
-							</a>
-						</div>
-					</li>											
-			
-			
-					<li>
-						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2019/12/16/centos%E7%B3%BB%E7%BB%9F%E5%86%85%E6%A0%B8%E9%99%8D%E7%BA%A7%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" title="centos系统内核降级解决方法">
-								centos系统内核降级解决方法			
-							</a>
-							<p class="relate-post-date">
-								<i class="fa fa-calendar"></i>
-								十二月 16日, 2019				
-							</p>
-							<p class="relate-post-content">
-								背景当你使用yum或rpm更新软件的时候，下载软件的时候，可能有意无意的升级了你的系统内核。系统内核升级之后可能导致系统之前配置好的某些功能无法使用，此时就要将系统内核降级到之前的版本。
-查看系统版本运行下面的命令查看示例：
-1cat...
-							</p>
-						</div>
-
-						<div class="relate-post-cover">
-							<a href="/2019/12/16/centos%E7%B3%BB%E7%BB%9F%E5%86%85%E6%A0%B8%E9%99%8D%E7%BA%A7%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" title="centos系统内核降级解决方法">				
-								
-								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/Random-img/64.jpg" alt="centos系统内核降级解决方法"/>
-							</a>
-						</div>
-					</li>											
-			
-			
-					<li>
-						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2019/03/14/Linux%E9%9D%9Eroot%E7%94%A8%E6%88%B7%E5%AE%89%E8%A3%85%E8%9E%8D%E5%90%88%E5%9F%BA%E5%9B%A0%E6%A3%80%E6%B5%8B%E8%BD%AF%E4%BB%B6pizzly%E6%95%99%E7%A8%8B%E4%B8%8Ecmake3-14%E5%92%8Cgcc-5-4%E5%AE%89%E8%A3%85/" title="Linux非root用户安装融合基因检测软件pizzly教程与cmake3.14和gcc.5.4安装">
-								Linux非root用户安装融合基因检测软件pizzly教程与cmake3.14和gcc.5.4安装			
-							</a>
-							<p class="relate-post-date">
-								<i class="fa fa-calendar"></i>
-								三月 14日, 2019				
-							</p>
-							<p class="relate-post-content">
-								 废话不多说，直接上干货。
-1. 下载软件并安装软件GitHub地址： https://github.com/pmelsted/pizzly    
-1git clone https://github.com/pmelsted/piz...
-							</p>
-						</div>
-
-						<div class="relate-post-cover">
-							<a href="/2019/03/14/Linux%E9%9D%9Eroot%E7%94%A8%E6%88%B7%E5%AE%89%E8%A3%85%E8%9E%8D%E5%90%88%E5%9F%BA%E5%9B%A0%E6%A3%80%E6%B5%8B%E8%BD%AF%E4%BB%B6pizzly%E6%95%99%E7%A8%8B%E4%B8%8Ecmake3-14%E5%92%8Cgcc-5-4%E5%AE%89%E8%A3%85/" title="Linux非root用户安装融合基因检测软件pizzly教程与cmake3.14和gcc.5.4安装">				
-								
-								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/Random-img/82.jpg" alt="Linux非root用户安装融合基因检测软件pizzly教程与cmake3.14和gcc.5.4安装"/>
-							</a>
-						</div>
-					</li>											
-			
-			
-		</ul>
-	
-</div>	
-			</div>
-			<div class="investment-content-list">
-				<div class="layout-comment">
-
-	
-
-		
-
-			<!-- gitalk comment -->
-			<!-- show gitalk comment -->
-<div id="gitalk-container"></div>
-
-<!-- gitalk`s css & js -->
-<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-<link rel="stylesheet" href="/css/comment.css">
-<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
-<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-
-<script type="text/javascript">
-	//Thanks O-R
-	//https://github.com/gitalk/gitalk/issues/102#issuecomment-382970552
-	//去除尾部匹配正则数组的字符串  
-	//Remove redundant characters
-	String.prototype.trimEnd = function(regStr) {
-		var result = this;
-		if(regStr == undefined || regStr == null || regStr == "") {
-			return result;
-		}
-		var array = regStr.split(',');
-
-		if(array.length > 0) {
-
-			var c = array.shift();
-			var str = this;
-			var i = str.length;
-			var rg = new RegExp(c);
-			var matchArr = str.match(rg);
-
-			if(matchArr != undefined && matchArr != null && matchArr.length > 0) {
-				var matchStr = matchArr[0].replace(/\\/g, "\\\\").replace(/\*/g, "\\*")
-					.replace(/\+/g, "\\+").replace(/\|/g, "\\|")
-					.replace(/\{/g, "\\{").replace(/\}/g, "\\}")
-					.replace(/\(/g, "\\(").replace(/\)/g, "\\)")
-					.replace(/\^/g, "\\^").replace(/\$/g, "\\$")
-					.replace(/\[/g, "\\[").replace(/\]/g, "\\]")
-					.replace(/\?/g, "\\?").replace(/\,/g, "\\,")
-					.replace(/\./g, "\\.").replace(/\&/g, "\\&");
-				matchStr = matchStr + '$';
-				result = str.replace(new RegExp(matchStr), "");
-			}
-
-			if(array.length > 0) {
-				return result.trimEnd(array.join())
-			} else {
-				return result;
-			}
-		}
-	};
-
-	//Create gitalk
-	var gitalk = new Gitalk({
-		clientID: '8a86ebf928efd6eb31dd',
-		clientSecret: '8a80dafc3b40b5ceb3ea95ac2eeab70a391d7fb5',
-		//id: window.location.pathname,
-		//id: decodeURI(window.location.pathname),
-		//id: (window.location.pathname).split("/").pop().substring(0, 49),
-		id: decodeURI( md5( location.href.trimEnd('#.*$,\\?.*$,index.html$') ) ),
-		repo: 'HandsYe.github.io',
-		owner: 'HandsYe',
-		admin: 'HandsYe',
-		distractionFreeMode: 'true',
-	})
-	gitalk.render('gitalk-container');
-</script>
-
-		
-		
-	
-
-</div>
-			</div>
-			<div class="investment-content-list">
-				<div class="layout-share">
-	
-	
-
-		
-			
-			<!-- socialShare share -->
-			<div class="social-share"></div>
-
-<!--  css & js -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
-<script async src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
-			
-		
-		
-	
-</div>
-
-
-			</div>
-		</div>	
-	</div>
-	</div>
-</div>
-
-
-
-	<!-- leancloud -->
-	<!--
-	时间：2018-11-27
-	描述：
-		文章访问量：visitors
-		文章喜欢量：likes	
-		文章排行榜：topNPost
-		其他得说明：
-			01-Cookie相关的函数 
-				https://blog.csdn.net/somehow1002/article/details/78511541（Author：somehow1002）
-			02-visitors相关的函数 
-				https://blog.csdn.net/u013553529/article/details/63357382（Author：爱博客大伯）
-				https://notes.doublemine.me/2015-10-21-为NexT主题添加文章阅读量统计功能.html（Author：夏末）
-			03-topNPost相关的函数
-				https://hoxis.github.io/hexo-next-read-rank.html（Author：hoxis）
-			04-likes相关的函数，
-				参考了01 & 02进行简单的设计与实现
--->
-
-
-	
-
-
-<!-- show math formula -->
-
-
-
-	 
-	<script src="/plugin/clipboard/clipboard.js"></script>
-	<script>
-		// Copy code !
-	    function codePreprocessing() {
-	        $("#article-content .highlight").each(function() {
-
-	            $(this).wrap('<div id="post-code"></div>');
-
-	        })
-
-	        $("#article-content #post-code").each(function() {
-
-	            $(this).prepend('<nav class="copy-nav"><span><i class="code-language"></i></span></nav>');
-
-	        })
-
-	        $("#article-content .copy-nav").each(function() {
-	            var temp = $(this).next().attr('class'),
-	                language = ((temp.length > 9) && (temp != null)) ? temp.substr(10) : "none"; //why 9? Need to check language?
-
-	            $(this).find('.code-language').text(language);
-
-	            $(this).append('<span class="copy-btn"><i class="fa fa-copy" aria-hidden="true"></i></span>');
-
-	        });
-	    }
-
-		function codeCopy() {
-		    $('#article-content #post-code').each(function(i) {
-		        var codeCopyId = 'codeCopy-' + i;
-
-		        var codeNode = $(this).find('.code'),
-		            copyButton = $(this).find('.copy-btn');
-
-		        codeNode.attr('id', codeCopyId);
-		        copyButton.attr('data-clipboard-target-id', codeCopyId);
-		    })
-
-		    
-			var clipboard = new ClipboardJS('.copy-btn', {
-					target: function(trigger) {
-						return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
-					}
-		      	});
-
-			//pure js
-			function showTooltip(elem, msg) {		   
-				elem.setAttribute('aria-label', msg);
-				elem.setAttribute('class', 'copy-btn copy-status');
-				setTimeout(function() {
-					elem.setAttribute('class', 'copy-btn');
-				}, 2000);
-			}
-
-			clipboard.on('success', function(e) {
-			    e.clearSelection();
-			    console.info('Action:', e.action);		   
-			    console.info('Trigger:', e.trigger);
-			    showTooltip(e.trigger, 'Copied!');
-			    
-			});
-			clipboard.on('error', function(e) {
-			    console.error('Action:', e.action);
-			    console.error('Trigger:', e.trigger);
-			});
-		
-
-		}
-
-		if ($('.layout-post').length) {
-		    codePreprocessing();
-		    codeCopy();
-		} 
-	</script>
-
-
-
-
-
-<link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
-<script src="/plugin/fancybox/jquery.fancybox.js"></script>
-
-<script type="text/javascript">
-	var titleID = $('.article-title a'),
-		imageID = $('.article-content img'),
-		videoID = $('.article-content video');
-
-	var postTitle = titleID.text() ? titleID.text() : "No post title!";
-
-	imageID.each(function() {
-		var imgPath = $(this).attr('src'),
-			imgTitle = $(this).attr('alt') ? $(this).attr('alt') : "No image description!";
-
-		//给每个匹配的<img>元素打包, 即添加父元素<a>
-		$(this).wrap('<a data-fancybox="gallery" data-caption=" 《 ' + postTitle + ' 》 ' + imgTitle + ' "  href=" ' + imgPath + ' "> </a>');
-	});
-
-	videoID.each(function() {
-		var videoPath = $(this).attr('src');
-
-		//给每个匹配的<img>元素打包, 即添加父元素<a>
-		$(this).wrap('<a data-fancybox href=" ' + videoPath + ' "> </a>');
-	});
-	//TODO：支持html5 video
-
-	if($('#layout-post').length) {
-		$('[data-fancybox="gallery"]').fancybox({
-			loop: true,
-			buttons: [
-				"zoom",
-				"share",
-				"slideShow",
-				"fullScreen",
-				//"download",
-				"thumbs",
-				"close"
-			],
-			protect: false
-		});
-	}
-</script>
-		</main>
-
-		<!--footer-->
-		<footer>
-	<div class="social">
-		<ul>
-	
-		<li>
-			<a href="https://github.com/HandsYe" target="_blank">
-				<i class="fa fa-github"></i>
-			</a>
-		</li>
-	
-		<li>
-			<a href="https://weibo.com/" target="_blank">
-				<i class="fa fa-weibo"></i>
-			</a>
-		</li>
-	
-		<li>
-			<a href="https://www.instagram.com/" target="_blank">
-				<i class="fa fa-instagram"></i>
-			</a>
-		</li>
-	
-		<li>
-			<a href="https://github.com/HandsYe" target="_blank">
-				<i class="fa fa-twitter"></i>
-			</a>
-		</li>
-			
-</ul>
-
-	</div>
-		
-	<div class="copyright">
-		<p>
-			 
-				&copy;2019 - 2020, content by HuiYe. All Rights Reserved.
-			
-			
-			
-
-	<!-- busuanzi -->
-	<!-- busuanzi -->
-
-		
-	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-	
-
-		<span id="busuanzi_container_page_pv">
-	  		本文总阅读量<span id="busuanzi_value_page_pv"></span>次
-		</span>
-
-	
-
-
-
-
-		</p>
-		<p>
-		</p>
-	</div>		
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/11/13/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E4%B9%8BKAGGLE-%E6%B3%B0%E5%9D%A6%E5%B0%BC%E5%85%8B%E5%8F%B7%E4%BA%BA%E5%91%98%E7%94%9F%E5%AD%98%E9%A2%84%E6%B5%8B%E9%97%AE%E9%A2%98/" data-id="ck9dnfqwq0006rx9xffeo5bp0" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" rel="tag">数据分析</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/03/14/Linux%E9%9D%9Eroot%E7%94%A8%E6%88%B7%E5%AE%89%E8%A3%85%E8%9E%8D%E5%90%88%E5%9F%BA%E5%9B%A0%E6%A3%80%E6%B5%8B%E8%BD%AF%E4%BB%B6pizzly%E6%95%99%E7%A8%8B%E4%B8%8Ecmake3-14%E5%92%8Cgcc-5-4%E5%AE%89%E8%A3%85/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Linux非root用户安装融合基因检测软件pizzly教程与cmake3.14和gcc.5.4安装
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Mysql-IT/">Mysql IT</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/centos7/">centos7</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%94%9F%E6%B4%BB%E9%9A%8F%E7%AC%94/">生活随笔</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6/">软件</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mysql/" rel="tag">Mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%86%85%E6%A0%B8kernel/" rel="tag">内核kernel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" rel="tag">数据分析</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9B%BE47/" rel="tag">曾47</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BB%83%E5%AD%97/" rel="tag">练字</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%9E%8D%E5%90%88%E5%9F%BA%E5%9B%A0/" rel="tag">融合基因</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Mysql/" style="font-size: 10px;">Mysql</a> <a href="/tags/%E5%86%85%E6%A0%B8kernel/" style="font-size: 10px;">内核kernel</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" style="font-size: 10px;">数据分析</a> <a href="/tags/%E6%9B%BE47/" style="font-size: 20px;">曾47</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E7%BB%83%E5%AD%97/" style="font-size: 20px;">练字</a> <a href="/tags/%E8%9E%8D%E5%90%88%E5%9F%BA%E5%9B%A0/" style="font-size: 10px;">融合基因</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/04/24/MySQL-%E7%BB%8F%E5%85%B8%E7%BB%83%E4%B9%A0%E9%A2%98%EF%BC%88%E4%B8%8A%EF%BC%89/">MySQL 经典练习题（上）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/01/02/%E8%A1%8C%E4%B9%A6%E7%BB%83%E5%AD%97%E6%97%A5%E5%B8%B8-2/">行书练字日常-2</a>
+          </li>
+        
+          <li>
+            <a href="/2019/12/18/%E7%BB%83%E5%AD%97%E6%97%A5%E5%B8%B8-1/">行书练字日常-1</a>
+          </li>
+        
+          <li>
+            <a href="/2019/12/16/centos%E7%B3%BB%E7%BB%9F%E5%86%85%E6%A0%B8%E9%99%8D%E7%BA%A7%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/">centos系统内核降级解决方法</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/14/Linux%E9%9D%9Eroot%E7%94%A8%E6%88%B7%E5%AE%89%E8%A3%85%E8%9E%8D%E5%90%88%E5%9F%BA%E5%9B%A0%E6%A3%80%E6%B5%8B%E8%BD%AF%E4%BB%B6pizzly%E6%95%99%E7%A8%8B%E4%B8%8Ecmake3-14%E5%92%8Cgcc-5-4%E5%AE%89%E8%A3%85/">Linux非root用户安装融合基因检测软件pizzly教程与cmake3.14和gcc.5.4安装</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 HuiYe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
 </footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
 
-		
-	<!-- set '1' to show motto in all pages! -->
-
-	<script src="/plugin/motto/motto.js"></script>
-	
-	<script type="text/javascript">
-		$(".motto").html( getMingYanContent() );
-	</script>	
-
-
-
-
-	<!--
-	时间：2018-10-3
-	描述：
-		插件名称：hexo-generator-search-zip
-		插件来源: https://github.com/SuperKieran/hexo-generator-search-zip
-		代码参考：https://github.com/SuperKieran/TKL/blob/master/layout/_partial/search.ejs(Include: js & css)	
--->
-<div class="popup search-popup local-search-popup" >
-	<div class="local-search-container">
-		<span class="popup-btn-close">
-      		ESC
-   		</span>
-		<div class="local-search-header">
-			<div class="input-prompt">				
-			</div>
-			<input autocomplete="off" placeholder="Search..." type="text" id="local-search-input">
-		</div>
-		<div class="local-search-body">
-			<div id="local-search-output"></div>
-		</div>
-		<div class="local-search-footer">
-			<div class="topN-post">				
-				
-								
-			</div>
-		</div>
-	</div>
-</div>
-
-<script src="/plugin/search/ziploader.js"></script>
-<script src="/plugin/search/search.js"></script>
-
-<script type="text/javascript">
-	var search_path = 'search.json',
-		zip_Path = '/search.zip',
-		version_Path = '/searchVersion.txt',
-		input_Trigger = 'auto',
-		top_N = '2';
-
-	themeLocalSearch({
-		search_path, 
-		zip_Path, 
-		version_Path, 
-		input_Trigger, 
-		top_N
-	});
-</script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
-<!-- love effect -->
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
-	<script src="/plugin/love/love.js"></script>
 
-
-<!-- back to top -->
-
-	
-	<div id="totop">
-  		<a href="javascript:;" target="_blank" rel="noopener"  name="TOTOP" class="fa fa-arrow-up" ></a>
-	</div>
+<script src="/js/script.js"></script>
 
 
 
-
-<!-- site analysis -->
-
-
-	<!-- site-analysis -->
-	
-
-	
-	
-	
-	
- 
-
-<script src="/plugin/vibrant/vibrant.js"></script>
-<script src="/plugin/chinese/chinese.js"></script>
-<script src="/plugin/imgLazyLoader/yall.min.js"></script>
-<script src="/plugin/imgResize/jquery.resizeimagetoparent.min.js"></script>
-<script src="/plugin/nicescroll/jquery.nicescroll.js"></script>
-<script src="/js/resizediv.js"></script>
-<script src="/js/main.js"></script>
-	<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>	
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>
